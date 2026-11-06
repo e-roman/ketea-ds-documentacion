@@ -152,6 +152,29 @@ function OpacityView() {
   )
 }
 
+/** Barra que se desplaza al pasar el mouse por la fila, con la duración o la curva del token. */
+const MotionBar = ({ duration, easing }: { duration?: string; easing?: string }) => (
+  <span className="group block h-3 w-28 rounded-full bg-muted">
+    <span
+      className="block h-3 w-3 rounded-full bg-primary transition-transform group-hover:translate-x-[6.25rem]"
+      style={{ transitionDuration: duration ?? "300ms", transitionTimingFunction: easing ?? "cubic-bezier(0.4, 0, 0.2, 1)" }}
+    />
+  </span>
+)
+
+function MotionView() {
+  return (
+    <>
+      <Section title="Duración" intro="Cuánto tarda una transición. Pasá el mouse por la muestra para verla.">
+        <TokenTable tokens={withPrefix("duration-")} sample={(t) => <MotionBar duration={t.resolved} />} />
+      </Section>
+      <Section title="Curvas" intro="Cómo acelera y frena una transición. «standard» sirve para casi todo; «out» para lo que entra en pantalla.">
+        <TokenTable tokens={withPrefix("easing-")} sample={(t) => <MotionBar easing={t.resolved} />} />
+      </Section>
+    </>
+  )
+}
+
 function SizeView() {
   return (
     <Section title="Tamaños" intro="Área mínima de toque, tamaños de ícono y anchos de contenedor.">
@@ -162,7 +185,7 @@ function SizeView() {
 
 const VIEWS: Record<string, () => React.JSX.Element> = {
   tokens: TokensView, color: ColorView, typography: TypographyView, spacing: SpacingView,
-  radius: RadiusView, shadow: ShadowView, border: BorderView, opacity: OpacityView, size: SizeView,
+  radius: RadiusView, shadow: ShadowView, border: BorderView, opacity: OpacityView, motion: MotionView, size: SizeView,
 }
 
 export const FoundationView = ({ slug }: { slug: string }) => {

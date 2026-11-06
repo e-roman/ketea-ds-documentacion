@@ -12,6 +12,7 @@ function tokenPage(name: string): { path: string; crumb: string } {
   if (name.startsWith("shadow-")) return f("shadow", "Shadow")
   if (name.startsWith("border-width-")) return f("border", "Border")
   if (name.startsWith("opacity-")) return f("opacity", "Opacity")
+  if (/^(duration|easing)-/.test(name)) return f("motion", "Motion")
   if (name.startsWith("size-")) return f("size", "Size")
   return f("tokens", "Design tokens")
 }

@@ -18,6 +18,7 @@ export const foundations: NavItem[] = [
   { slug: "shadow", title: "Shadow", description: "Sombras para separar superficies del fondo y el anillo de foco." },
   { slug: "border", title: "Border", description: "Grosores de borde." },
   { slug: "opacity", title: "Opacity", description: "Opacidades para estados deshabilitado, hover y overlay." },
+  { slug: "motion", title: "Motion", description: "Cuánto dura y cómo se mueve cada transición." },
   { slug: "size", title: "Size", description: "Tamaños mínimos de toque, íconos y contenedores." },
 ]
 

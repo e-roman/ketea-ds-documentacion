@@ -16,7 +16,7 @@ export default function GetStarted() {
         </ul>
       </Section>
       <Section title="Instalar los tokens" intro="Los tokens viven en un repositorio propio y se instalan por versión.">
-        <pre className={code}>npm install github:e-roman/ketea-design-tokens#v2.0.0</pre>
+        <pre className={code}>npm install github:e-roman/ketea-design-tokens#v2.1.0</pre>
         <p className="text-sm text-muted-foreground">Repositorio: <a className="underline underline-offset-4" href={TOKENS_REPO} target="_blank" rel="noreferrer">{TOKENS_REPO}</a></p>
       </Section>
       <Section title="Usarlos en CSS">
