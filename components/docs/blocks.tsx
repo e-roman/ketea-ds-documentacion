@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRightIcon, CheckIcon, XIcon } from "lucide-react"
-import { Shot } from "@/components/docs/shot-variants"
+import { StoryPreview } from "@/components/docs/live-variants"
+import { liveUrl } from "@/lib/storybook"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import type { NavItem } from "@/lib/nav"
@@ -46,7 +47,7 @@ export function PageHeader({ title, description, links }: { title: string; descr
 
 export function Section({ title, intro, children }: { title: string; intro?: string; children: React.ReactNode }) {
   return (
-    <section className="mb-10 space-y-3">
+    <section className="mb-14 space-y-3">
       <h2 className="text-xl font-semibold">{title}</h2>
       {intro && <p className="max-w-2xl text-sm text-muted-foreground">{intro}</p>}
       {children}
@@ -123,7 +124,7 @@ export function DoDont({ items }: { items: { ok: boolean; title: string; text?: 
         <figure key={it.title}>
           <div className="relative overflow-hidden rounded-2xl border bg-white p-4">
             <StatusIcon ok={it.ok} className="absolute right-4 top-4 z-10 size-5" />
-            <Shot id={it.storyId} alt={it.title} />
+            <StoryPreview id={it.storyId} src={liveUrl(it.storyId)} label={it.title} />
           </div>
           <figcaption className="mt-3 text-sm">
             <b>{it.title}</b>

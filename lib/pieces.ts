@@ -1,6 +1,10 @@
 /** Componentes y patrones documentados. Se agrega una pieza acá cuando tiene stories en Storybook. */
 
 export type Prop = [name: string, type: string, desc: string, required?: boolean]
+/** Una parte del componente. `selector` se busca dentro de la story; `side` es de qué lado se dibuja el número; `pct` lo mueve a lo largo de ese borde (0–100, por defecto 50). */
+export type AnatomyPart = { n: number; label: string; selector: string; note?: string; side: "top" | "bottom" | "left" | "right"; pct?: number }
+/** Anatomía interactiva: una story de Storybook y sus partes. */
+export type Anatomy = { story: string; /** Ancho máximo del marco en px. */ width?: number; parts: AnatomyPart[] }
 /** `width`: ancho máximo del marco en px; las stories mobile se muestran en un marco angosto. */
 export type Story = { label: string; id: string; width?: number }
 /** Cambio propio de la pieza. Lo que va entre `backticks` se muestra como código. */
@@ -22,6 +26,8 @@ export type Piece = {
   /** Alto del preview en px (por defecto 200). */
   previewHeight?: number
   stories: Story[]
+  /** Partes del componente, con un número cada una; abren el inspector (solo las que existen en el código). */
+  anatomy?: Anatomy
   props: Prop[]
   use: string[]
   avoid: string[]
@@ -66,6 +72,15 @@ export const pieces: Piece[] = [
     slug: "quantity-control", group: "components", title: "Quantity control", file: "QuantityControl.jsx",
     description: "Control para aumentar o disminuir la cantidad de un producto.",
     docsId: "components-quantity-control--docs",
+    anatomy: {
+      story: "components-quantity-control--default", width: 300,
+      parts: [
+        { n: 1, label: "Contenedor", selector: ".btn-i-d", side: "left" },
+        { n: 2, label: "Disminuir", selector: "button[aria-label=\"Disminuir cantidad\"]", side: "bottom" },
+        { n: 3, label: "Cantidad", selector: "input.form-control", side: "top" },
+        { n: 4, label: "Aumentar", selector: "button[aria-label=\"Aumentar cantidad\"]", side: "bottom" },
+      ],
+    },
     stories: [
       { label: "Default", id: "components-quantity-control--default" },
       { label: "En el mínimo", id: "components-quantity-control--at-minimum" },
@@ -93,6 +108,18 @@ export const pieces: Piece[] = [
     slug: "product-card", group: "patterns", cat: "Producto", title: "Product card", file: "ProductCard.jsx",
     description: "Card de producto en grillas y listados, con favorito, vista rápida y agregar al carrito.",
     docsId: "patterns-producto-product-card--docs",
+    anatomy: {
+      story: "patterns-producto-product-card--with-discount", width: 360,
+      parts: [
+        { n: 1, label: "Contenedor", selector: ".card", side: "left", pct: 20 },
+        { n: 2, label: "Imagen", selector: ".card-img-top", side: "right", pct: 35 },
+        { n: 3, label: "Favorito", selector: ".btn-fav", side: "right" },
+        { n: 4, label: "Título", selector: ".card-body > button", side: "left" },
+        { n: 5, label: "Precio anterior", selector: ".old-price", side: "right" },
+        { n: 6, label: "Precio actual", selector: ".current-price", side: "left" },
+        { n: 7, label: "Medios de pago", selector: ".text-pay", side: "right" },
+      ],
+    },
     previewHeight: 500,
     stories: [
       { label: "Con descuento", id: "patterns-producto-product-card--with-discount" },
@@ -135,6 +162,16 @@ export const pieces: Piece[] = [
     slug: "suscribe", group: "patterns", cat: "Inicio y contenido", title: "Suscribe", file: "Suscribe.jsx",
     description: "Bloque de suscripción al newsletter con título, bajada y campo de email.",
     docsId: "patterns-inicio-y-contenido-suscribe--docs",
+    anatomy: {
+      story: "patterns-inicio-y-contenido-suscribe--default", width: 720,
+      parts: [
+        { n: 1, label: "Título", selector: "h1", side: "top" },
+        { n: 2, label: "Campo", selector: ".input-subscribe .form-control", side: "left" },
+        { n: 3, label: "Botón", selector: ".input-subscribe .btn", side: "right" },
+        { n: 4, label: "Contenedor", selector: ".input-subscribe", side: "top", pct: 95 },
+        { n: 5, label: "Aviso de privacidad", selector: "p.small", side: "bottom" },
+      ],
+    },
     previewHeight: 320,
     stories: [{ label: "Default", id: "patterns-inicio-y-contenido-suscribe--default" }],
     props: [],
@@ -171,6 +208,18 @@ export const pieces: Piece[] = [
     slug: "alert-floating", group: "patterns", cat: "Overlays", title: "Alert floating", file: "alert/AlertFloating.jsx",
     description: "Aviso flotante que confirma una acción sobre un producto: carrito, favorito agregado o favorito quitado.",
     docsId: "components-alert-floating--docs",
+    anatomy: {
+      story: "components-alert-floating--agregado-al-carrito", width: 560,
+      parts: [
+        { n: 1, label: "Contenedor", selector: ".alert-floating-box", side: "top", pct: 15 },
+        { n: 2, label: "Cerrar", selector: ".alert-close-btn", side: "top" },
+        { n: 3, label: "Imagen", selector: "img", side: "bottom" },
+        { n: 4, label: "Ícono de estado", selector: ".alert-status-icon", side: "left" },
+        { n: 5, label: "Estado", selector: ".status", side: "top" },
+        { n: 6, label: "Título", selector: ".alert-title", side: "right" },
+        { n: 7, label: "Precio", selector: ".alert-price", side: "right" },
+      ],
+    },
     previewHeight: 190,
     stories: [
       { label: "Agregado al carrito", id: "components-alert-floating--agregado-al-carrito" },
@@ -695,6 +744,18 @@ export const pieces: Piece[] = [
     slug: "confirm-modal", group: "patterns", cat: "Overlays", title: "Confirm modal", file: "Modals/ConfirmModal.jsx",
     description: "Diálogo para confirmar una acción que no se puede deshacer, por ejemplo quitar un producto del carrito.",
     docsId: "patterns-overlays-confirm-modal--docs",
+    anatomy: {
+      story: "patterns-overlays-confirm-modal--quitar-del-carrito", width: 760,
+      parts: [
+        { n: 1, label: "Fondo", selector: ".modal-backdrop", side: "left", pct: 20 },
+        { n: 2, label: "Diálogo", selector: ".modal-content", side: "top" },
+        { n: 3, label: "Ícono", selector: ".bg-danger.rounded-circle", side: "left" },
+        { n: 4, label: "Título", selector: "h5", side: "right" },
+        { n: 5, label: "Mensaje", selector: "p.text-muted", side: "right" },
+        { n: 6, label: "Cancelar", selector: ".btn-outline-secondary", side: "bottom" },
+        { n: 7, label: "Confirmar", selector: ".btn-danger", side: "bottom" },
+      ],
+    },
     previewHeight: 430,
     stories: [
       { label: "Quitar del carrito", id: "patterns-overlays-confirm-modal--quitar-del-carrito" },
@@ -984,6 +1045,15 @@ export const pieces: Piece[] = [
     slug: "filter-chips", group: "components", title: "Filter chips", file: "search/SearchFilterChips.jsx",
     description: "Filtros aplicados como chips que se quitan de a uno, con «Borrar» para quitarlos todos.",
     docsId: "components-filter-chips--docs",
+    anatomy: {
+      story: "components-filter-chips--default", width: 640,
+      parts: [
+        { n: 1, label: "Título", selector: "h5", side: "top", pct: 20 },
+        { n: 2, label: "Borrar", selector: ".btn-link", side: "top" },
+        { n: 3, label: "Chip", selector: ".chip", side: "left" },
+        { n: 4, label: "Ícono de quitar", selector: ".chip:last-child .chip-remove-icon", side: "right" },
+      ],
+    },
     previewHeight: 130,
     stories: [
       { label: "Default", id: "components-filter-chips--default" },
@@ -1167,6 +1237,14 @@ export const pieces: Piece[] = [
     slug: "button", group: "components", title: "Button", file: "base/Button.stories.jsx",
     description: "Botón de la tienda: una jerarquía (primario, secundario, contorno, suave, blanco, peligro o enlace) y cuatro tamaños.",
     docsId: "components-button--docs",
+    anatomy: {
+      story: "components-button--anatomia",
+      parts: [
+        { n: 1, label: "Contenedor", selector: ".btn", side: "top" },
+        { n: 2, label: "Label", selector: ".btn span", side: "bottom" },
+        { n: 3, label: "Ícono", selector: ".btn i", side: "left", note: "opcional" },
+      ],
+    },
     stories: [
       { label: "Jerarquías", id: "components-button--jerarquias" },
       { label: "Tamaños", id: "components-button--tamanos" },
@@ -1217,6 +1295,14 @@ export const pieces: Piece[] = [
     slug: "form-fields", group: "components", title: "Form fields", file: "base/Fields.stories.jsx",
     description: "Campos de formulario: texto, lista, campo con botón y mensaje de error.",
     docsId: "components-form-fields--docs",
+    anatomy: {
+      story: "components-form-fields--con-error", width: 420,
+      parts: [
+        { n: 1, label: "Label", selector: ".form-label", side: "top", pct: 15 },
+        { n: 2, label: "Campo", selector: ".form-control", side: "right" },
+        { n: 3, label: "Mensaje de error", selector: ".invalid-feedback", side: "bottom", pct: 20 },
+      ],
+    },
     stories: [
       { label: "Texto", id: "components-form-fields--texto" },
       { label: "Lista", id: "components-form-fields--lista" },
@@ -1241,6 +1327,14 @@ export const pieces: Piece[] = [
     slug: "selection-controls", group: "components", title: "Selection controls", file: "base/Selection.stories.jsx",
     description: "Casillas, botones de opción e interruptores.",
     docsId: "components-selection-controls--docs",
+    anatomy: {
+      story: "components-selection-controls--casilla", width: 360,
+      parts: [
+        { n: 1, label: "Contenedor", selector: ".form-check", side: "top", pct: 10 },
+        { n: 2, label: "Casilla", selector: ".form-check-input", side: "left" },
+        { n: 3, label: "Etiqueta", selector: ".form-check-label", side: "right" },
+      ],
+    },
     stories: [
       { label: "Casilla", id: "components-selection-controls--casilla" },
       { label: "Botón de opción", id: "components-selection-controls--opcion" },
@@ -1285,6 +1379,15 @@ export const pieces: Piece[] = [
     slug: "breadcrumb", group: "components", title: "Breadcrumb", file: "base/Breadcrumb.stories.jsx",
     description: "Ruta de categorías que lleva hasta un producto.",
     docsId: "components-breadcrumb--docs",
+    anatomy: {
+      story: "components-breadcrumb--default", width: 560,
+      parts: [
+        { n: 1, label: "Contenedor", selector: "ol.breadcrumb", side: "top" },
+        { n: 2, label: "Nivel (enlace)", selector: "li a", side: "bottom" },
+        { n: 3, label: "Chevron", selector: "li i", side: "top" },
+        { n: 4, label: "Página actual", selector: "li.active", side: "bottom" },
+      ],
+    },
     stories: [{ label: "Default", id: "components-breadcrumb--default" }],
     props: [["breadcrumb", "clase", "Sobre el `ol`: lista de niveles.", true]],
     use: ["En la ficha de producto, arriba del contenido, para volver a una categoría."],
@@ -1297,6 +1400,13 @@ export const pieces: Piece[] = [
     slug: "progress", group: "components", title: "Progress", file: "base/Progress.stories.jsx",
     description: "Barra de avance de 4 px, como la de la distribución de puntajes de las reseñas.",
     docsId: "components-progress--docs",
+    anatomy: {
+      story: "components-progress--default", width: 420,
+      parts: [
+        { n: 1, label: "Pista", selector: ".progress", side: "right" },
+        { n: 2, label: "Relleno", selector: ".d-flex:nth-child(2) .progress-bar", side: "right" },
+      ],
+    },
     stories: [{ label: "Default", id: "components-progress--default" }],
     props: [
       ["progress", "clase", "Contenedor de la barra; el alto se fija con `style`.", true],

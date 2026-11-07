@@ -18,3 +18,6 @@ export const storyUrl = (id: string) => `${SB}/?path=/story/${id}`
 export const docsUrl = (id: string) => `${SB}/?path=/docs/${id}`
 /** Código de la pieza. Los archivos de `pages/` (checkout) viven fuera de `src/components`. */
 export const sourceUrl = (file: string) => (file.startsWith("pages/") ? `${REPO}/blob/main/${file}` : `${REPO}/blob/main/src/components/${file}`)
+
+/** Story embebida en vivo. Pasa por `/sb` (rewrite de next.config.ts): mismo origen, así el inspector puede leer su contenido. `embed=1` hace que la story avise su alto. */
+export const liveUrl = (id: string) => `/sb/iframe.html?id=${id}&viewMode=story&embed=1`

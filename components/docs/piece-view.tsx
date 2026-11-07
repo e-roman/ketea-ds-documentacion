@@ -1,10 +1,12 @@
 import { DoDont, PageHeader, PropsTable, Section, WhenToUse } from "@/components/docs/blocks"
 import { DocTabs } from "@/components/docs/doc-tabs"
-import { ShotVariants } from "@/components/docs/shot-variants"
+import { AnatomyView } from "@/components/docs/anatomy-view"
+import { InspectDrawer } from "@/components/docs/inspector"
+import { LiveVariants } from "@/components/docs/live-variants"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { contrast } from "@/lib/contrast"
 import type { Piece } from "@/lib/pieces"
-import { docsUrl, sourceUrl, storyUrl } from "@/lib/storybook"
+import { docsUrl, liveUrl, sourceUrl, storyUrl } from "@/lib/storybook"
 import { token } from "@/lib/tokens"
 
 /** Texto con `código` entre backticks. */
@@ -27,16 +29,22 @@ export function PieceView({ piece }: { piece: Piece }) {
   const hasA11y = Boolean(piece.a11y?.length || piece.keyboard?.length || piece.contrast?.length)
   return (
     <article>
+      <InspectDrawer />
       <PageHeader title={piece.title} description={piece.description} links={{ github: sourceUrl(piece.file), storybook: docsUrl(piece.docsId) }} />
       <DocTabs
         panels={{
           design: (
             <>
-              <Section title="Variantes" intro="Capturas del componente real de la tienda, tomadas de Storybook con datos de ejemplo.">
+              {piece.anatomy && (
+                <Section title="Anatomía" intro="Cada número es una parte del componente real: hacé clic para ver sus propiedades y tokens.">
+                  <AnatomyView title={piece.title} src={liveUrl(piece.anatomy.story)} anatomy={piece.anatomy} />
+                </Section>
+              )}
+              <Section title="Variantes" intro="El componente real de la tienda, en vivo desde Storybook. Con «Inspeccionar» ves las propiedades y los tokens de cada parte.">
                 {piece.stories.length === 0 ? (
                   <p className="text-sm text-muted-foreground">Este componente no dibuja nada en pantalla, así que no tiene vista previa. Podés probarlo en su story de Storybook.</p>
                 ) : (
-                  <ShotVariants title={piece.title} items={piece.stories.map((s) => ({ label: s.label, id: s.id, href: storyUrl(s.id) }))} />
+                  <LiveVariants title={piece.title} items={piece.stories.map((s) => ({ label: s.label, id: s.id, src: liveUrl(s.id), href: storyUrl(s.id), width: s.width }))} />
                 )}
               </Section>
               <Section title="Props"><PropsTable props={piece.props} /></Section>
