@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ArrowRightIcon, CheckIcon, XIcon } from "lucide-react"
-import { StoryFrame } from "@/components/docs/story-frame"
+import { Shot } from "@/components/docs/shot-variants"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import type { NavItem } from "@/lib/nav"
@@ -116,14 +116,14 @@ export function WhenToUse({ use, avoid }: { use: string[]; avoid: string[] }) {
 }
 
 /** Tarjetas «sí / no» con un preview (una story de Storybook) y el motivo. */
-export function DoDont({ items }: { items: { ok: boolean; title: string; text?: string; src: string }[] }) {
+export function DoDont({ items }: { items: { ok: boolean; title: string; text?: string; storyId: string }[] }) {
   return (
     <div className="grid gap-6 sm:grid-cols-2">
       {items.map((it) => (
         <figure key={it.title}>
-          <div className="relative overflow-hidden rounded-2xl bg-muted">
+          <div className="relative overflow-hidden rounded-2xl border bg-white p-4">
             <StatusIcon ok={it.ok} className="absolute right-4 top-4 z-10 size-5" />
-            <StoryFrame title={it.title} src={it.src} fallbackHeight={420} />
+            <Shot id={it.storyId} alt={it.title} />
           </div>
           <figcaption className="mt-3 text-sm">
             <b>{it.title}</b>

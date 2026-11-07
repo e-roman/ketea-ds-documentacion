@@ -1,7 +1,6 @@
 import { DoDont, PageHeader, PropsTable, Section, WhenToUse } from "@/components/docs/blocks"
 import { DocTabs } from "@/components/docs/doc-tabs"
-import { StoryFrame } from "@/components/docs/story-frame"
-import { Badge } from "@/components/ui/badge"
+import { ShotVariants } from "@/components/docs/shot-variants"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { contrast } from "@/lib/contrast"
 import type { Piece } from "@/lib/pieces"
@@ -33,18 +32,12 @@ export function PieceView({ piece }: { piece: Piece }) {
         panels={{
           design: (
             <>
-              <Section title="Variantes" intro="Cada vista es el componente real de la tienda, publicado en Storybook.">
-                {piece.stories.length === 0 && (
+              <Section title="Variantes" intro="Capturas del componente real de la tienda, tomadas de Storybook con datos de ejemplo.">
+                {piece.stories.length === 0 ? (
                   <p className="text-sm text-muted-foreground">Este componente no dibuja nada en pantalla, así que no tiene vista previa. Podés probarlo en su story de Storybook.</p>
+                ) : (
+                  <ShotVariants title={piece.title} items={piece.stories.map((s) => ({ label: s.label, id: s.id, href: storyUrl(s.id) }))} />
                 )}
-                <div className="space-y-6">
-                  {piece.stories.map((s) => (
-                    <figure key={s.id} className="space-y-2">
-                      <figcaption><Badge variant="secondary">{s.label}</Badge></figcaption>
-                      <StoryFrame title={`${piece.title} · ${s.label}`} src={storyUrl(s.id)} fallbackHeight={piece.previewHeight ?? 200} width={s.width} className="rounded-lg border bg-white" />
-                    </figure>
-                  ))}
-                </div>
               </Section>
               <Section title="Props"><PropsTable props={piece.props} /></Section>
             </>
@@ -56,7 +49,7 @@ export function PieceView({ piece }: { piece: Piece }) {
               </Section>
               {piece.practices && piece.practices.length > 0 && (
                 <Section title="Buenas prácticas">
-                  <DoDont items={piece.practices.map((p) => ({ ok: p.ok, title: p.title, text: p.text, src: storyUrl(p.storyId) }))} />
+                  <DoDont items={piece.practices.map((p) => ({ ok: p.ok, title: p.title, text: p.text, storyId: p.storyId }))} />
                 </Section>
               )}
             </>

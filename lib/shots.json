@@ -1,0 +1,546 @@
+{
+ "components-button-spinner--idle": [
+  199,
+  82
+ ],
+ "components-button-spinner--loading": [
+  185,
+  82
+ ],
+ "components-quantity-control--default": [
+  172,
+  70
+ ],
+ "components-quantity-control--at-minimum": [
+  172,
+  70
+ ],
+ "patterns-producto-product-card--with-discount": [
+  312,
+  508
+ ],
+ "patterns-producto-product-card--without-discount": [
+  312,
+  465
+ ],
+ "patterns-producto-product-card--out-of-stock": [
+  312,
+  508
+ ],
+ "patterns-producto-product-card--loading": [
+  312,
+  428
+ ],
+ "patterns-producto-product-card--mobile": [
+  312,
+  514
+ ],
+ "patterns-producto-product-card--horizontal": [
+  312,
+  256
+ ],
+ "patterns-producto-product-card--horizontal-mobile": [
+  312,
+  242
+ ],
+ "patterns-inicio-y-contenido-suscribe--default": [
+  1280,
+  409
+ ],
+ "components-skeleton--block": [
+  1280,
+  96
+ ],
+ "components-skeleton--product-card": [
+  312,
+  428
+ ],
+ "components-skeleton--product-grid": [
+  1280,
+  400
+ ],
+ "components-skeleton--banner": [
+  1172,
+  466
+ ],
+ "components-alert-floating--agregado-al-carrito": [
+  1280,
+  300
+ ],
+ "components-alert-floating--favorito-agregado": [
+  1280,
+  300
+ ],
+ "components-alert-floating--favorito-quitado": [
+  1280,
+  300
+ ],
+ "components-listing-banner--ofertas": [
+  1172,
+  466
+ ],
+ "components-listing-banner--novedades": [
+  1172,
+  466
+ ],
+ "components-listing-banner--mas-vendido": [
+  1172,
+  466
+ ],
+ "patterns-inicio-y-contenido-block-services--desktop": [
+  1280,
+  147
+ ],
+ "patterns-inicio-y-contenido-block-services--mobile": [
+  390,
+  96
+ ],
+ "patterns-inicio-y-contenido-brands-logos--default": [
+  1280,
+  201
+ ],
+ "patterns-inicio-y-contenido-banners--dos-columnas": [
+  1172,
+  324
+ ],
+ "patterns-inicio-y-contenido-banners--tres-columnas": [
+  1172,
+  363
+ ],
+ "patterns-inicio-y-contenido-footer--desktop": [
+  1280,
+  566
+ ],
+ "patterns-inicio-y-contenido-footer--mobile": [
+  390,
+  776
+ ],
+ "components-product-card-spec--con-especificacion": [
+  130,
+  53
+ ],
+ "components-product-card-spec--sin-especificacion": [
+  169,
+  53
+ ],
+ "patterns-producto-product-detail--default": [
+  1280,
+  585
+ ],
+ "patterns-producto-product-detail--sin-stock": [
+  1280,
+  585
+ ],
+ "patterns-producto-product-gallery--default": [
+  1280,
+  728
+ ],
+ "patterns-producto-product-gallery--una-sola-foto": [
+  1280,
+  297
+ ],
+ "patterns-producto-product-gallery-mobile--default": [
+  390,
+  422
+ ],
+ "patterns-producto-product-info-tabs--default": [
+  1280,
+  322
+ ],
+ "patterns-producto-specifications-blocks--default": [
+  1172,
+  2678
+ ],
+ "patterns-producto-product-specifications--default": [
+  1172,
+  426
+ ],
+ "patterns-producto-product-reviews--default": [
+  1172,
+  896
+ ],
+ "patterns-producto-products-others--default": [
+  1172,
+  230
+ ],
+ "patterns-overlays-quick-view--default": [
+  1280,
+  752
+ ],
+ "patterns-carga-page-skeletons--inicio": [
+  1280,
+  1747
+ ],
+ "patterns-carga-page-skeletons--listado": [
+  1280,
+  1296
+ ],
+ "patterns-carga-page-skeletons--descuentos": [
+  1280,
+  1949
+ ],
+ "patterns-carga-page-skeletons--detalle-de-producto": [
+  1280,
+  1713
+ ],
+ "patterns-carga-page-skeletons--busqueda": [
+  1172,
+  1199
+ ],
+ "patterns-carga-page-skeletons--carrito": [
+  1280,
+  712
+ ],
+ "patterns-carga-page-skeletons--checkout": [
+  1280,
+  631
+ ],
+ "patterns-carga-page-skeletons--pedido-completo": [
+  1280,
+  659
+ ],
+ "patterns-carga-page-skeletons--perfil": [
+  1280,
+  578
+ ],
+ "patterns-carga-page-skeletons--por-ruta": [
+  1280,
+  712
+ ],
+ "patterns-carrito-sidebar-cart--con-productos": [
+  1280,
+  760
+ ],
+ "patterns-carrito-sidebar-cart--vacio": [
+  1280,
+  760
+ ],
+ "patterns-checkout-header-checkout--datos-personales": [
+  1280,
+  92
+ ],
+ "patterns-checkout-header-checkout--entrega": [
+  1280,
+  92
+ ],
+ "patterns-checkout-header-checkout--pago": [
+  1280,
+  92
+ ],
+ "patterns-checkout-steppers--primer-paso": [
+  531,
+  74
+ ],
+ "patterns-checkout-steppers--segundo-paso": [
+  531,
+  74
+ ],
+ "patterns-checkout-steppers--tercer-paso": [
+  531,
+  74
+ ],
+ "patterns-checkout-order-summary--default": [
+  672,
+  998
+ ],
+ "patterns-header-header-desktop--default": [
+  1280,
+  228
+ ],
+ "patterns-header-header-desktop--con-sesion": [
+  1280,
+  252
+ ],
+ "patterns-header-main-header--default": [
+  1280,
+  100
+ ],
+ "patterns-header-main-header--con-sesion": [
+  1280,
+  100
+ ],
+ "patterns-header-nav-categories--default": [
+  1280,
+  452
+ ],
+ "patterns-header-nav-categories--mega-menu-abierto": [
+  1280,
+  452
+ ],
+ "patterns-header-mega-menu--default": [
+  1280,
+  632
+ ],
+ "patterns-header-top-bars--aviso-desktop": [
+  1280,
+  70
+ ],
+ "patterns-header-top-bars--aviso-mobile": [
+  390,
+  62
+ ],
+ "patterns-header-top-bars--contacto-desktop": [
+  1280,
+  73
+ ],
+ "patterns-header-header-mobile--default": [
+  390,
+  300
+ ],
+ "patterns-header-menu-mobile--default": [
+  390,
+  592
+ ],
+ "patterns-header-menu-mobile--con-sesion": [
+  390,
+  662
+ ],
+ "patterns-header-categories-modal--default": [
+  390,
+  700
+ ],
+ "patterns-header-search-modal--default": [
+  390,
+  700
+ ],
+ "patterns-header-sidebar-categories--default": [
+  390,
+  700
+ ],
+ "patterns-overlays-confirm-modal--quitar-del-carrito": [
+  1280,
+  420
+ ],
+ "patterns-overlays-confirm-modal--textos-personalizados": [
+  1280,
+  420
+ ],
+ "patterns-overlays-logout-modal--default": [
+  1280,
+  420
+ ],
+ "patterns-overlays-list-prices--default": [
+  1280,
+  420
+ ],
+ "patterns-overlays-account-modals--agregar-tarjeta": [
+  1280,
+  760
+ ],
+ "patterns-overlays-account-modals--editar-tarjeta": [
+  1280,
+  760
+ ],
+ "patterns-overlays-account-modals--factura": [
+  1280,
+  760
+ ],
+ "patterns-overlays-login-modal--ingresar": [
+  1280,
+  760
+ ],
+ "patterns-overlays-login-modal--crear-cuenta": [
+  1280,
+  760
+ ],
+ "patterns-overlays-discount-methods-modal--default": [
+  1280,
+  760
+ ],
+ "patterns-profile-profile-menu--datos-personales": [
+  352,
+  601
+ ],
+ "patterns-profile-profile-menu--mis-compras": [
+  352,
+  601
+ ],
+ "patterns-profile-personal-info--default": [
+  1280,
+  1394
+ ],
+ "patterns-profile-account-address--default": [
+  1280,
+  641
+ ],
+ "patterns-profile-account-security--default": [
+  1280,
+  1187
+ ],
+ "patterns-profile-account-notifications--preferencias": [
+  1280,
+  1137
+ ],
+ "patterns-profile-account-notifications--avisos": [
+  1280,
+  584
+ ],
+ "patterns-profile-account-orders--default": [
+  1280,
+  1097
+ ],
+ "patterns-profile-account-payment--default": [
+  1280,
+  595
+ ],
+ "patterns-profile-account-receipts--default": [
+  1280,
+  375
+ ],
+ "patterns-profile-account-wishlist--con-favoritos": [
+  1280,
+  583
+ ],
+ "patterns-profile-account-wishlist--sin-favoritos": [
+  1280,
+  495
+ ],
+ "components-filter-list--default": [
+  312,
+  330
+ ],
+ "components-filter-list--con-seleccion": [
+  312,
+  330
+ ],
+ "components-filter-list--pocas-opciones": [
+  312,
+  180
+ ],
+ "components-filter-chips--default": [
+  1155,
+  91
+ ],
+ "components-filter-chips--un-solo-filtro": [
+  1155,
+  91
+ ],
+ "components-search-sort--escritorio": [
+  1280,
+  332
+ ],
+ "components-search-sort--celular": [
+  1280,
+  332
+ ],
+ "patterns-search-search-filters--sin-filtros": [
+  352,
+  1467
+ ],
+ "patterns-search-search-filters--con-filtros-aplicados": [
+  352,
+  1243
+ ],
+ "patterns-inicio-y-contenido-hero-slider--default": [
+  1172,
+  551
+ ],
+ "patterns-inicio-y-contenido-category-slider--escritorio": [
+  1280,
+  522
+ ],
+ "patterns-inicio-y-contenido-category-slider--celular": [
+  390,
+  509
+ ],
+ "patterns-inicio-y-contenido-product-grid--ofertas": [
+  1280,
+  483
+ ],
+ "patterns-inicio-y-contenido-product-grid--novedades": [
+  1280,
+  483
+ ],
+ "patterns-inicio-y-contenido-product-carousel--celular": [
+  390,
+  454
+ ],
+ "patterns-inicio-y-contenido-product-carousel--escritorio": [
+  1280,
+  488
+ ],
+ "patterns-inicio-y-contenido-support-chat--cerrado": [
+  1280,
+  420
+ ],
+ "patterns-inicio-y-contenido-support-chat--abierto": [
+  1280,
+  420
+ ],
+ "components-button--jerarquias": [
+  1280,
+  82
+ ],
+ "components-button--tamanos": [
+  1280,
+  82
+ ],
+ "components-button--con-icono": [
+  1280,
+  82
+ ],
+ "components-button--estados": [
+  1280,
+  82
+ ],
+ "components-badge--estados": [
+  1280,
+  53
+ ],
+ "components-badge--contador": [
+  82,
+  91
+ ],
+ "components-form-fields--texto": [
+  452,
+  106
+ ],
+ "components-form-fields--lista": [
+  452,
+  106
+ ],
+ "components-form-fields--con-error": [
+  452,
+  131
+ ],
+ "components-form-fields--con-boton": [
+  452,
+  82
+ ],
+ "components-form-fields--deshabilitado": [
+  452,
+  106
+ ],
+ "components-selection-controls--casilla": [
+  1280,
+  126
+ ],
+ "components-selection-controls--opcion": [
+  1280,
+  92
+ ],
+ "components-selection-controls--interruptor": [
+  1280,
+  94
+ ],
+ "components-alert--error": [
+  1280,
+  82
+ ],
+ "components-alert--advertencia": [
+  1280,
+  79
+ ],
+ "components-alert--error-suave": [
+  1280,
+  82
+ ],
+ "components-breadcrumb--default": [
+  1280,
+  53
+ ],
+ "components-progress--default": [
+  392,
+  140
+ ]
+}

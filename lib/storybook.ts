@@ -13,8 +13,8 @@ export const TOKENS_REPO = "https://github.com/e-roman/ketea-design-tokens"
 /** Archivo de Figma del sistema (Ketea DS), tomado del README de los tokens. */
 export const FIGMA = "https://www.figma.com/design/lXKFv02FouHJOUG9Qrsib2"
 
-/** `embed=1` hace que la story le avise su alto a la documentación (ver .storybook/preview.jsx de la tienda). */
-export const storyUrl = (id: string) => `${SB}/iframe.html?id=${id}&viewMode=story&embed=1`
+/** Story interactiva en Storybook. Las capturas de la documentación se generan con `scripts/shots.mjs`. */
+export const storyUrl = (id: string) => `${SB}/?path=/story/${id}`
 export const docsUrl = (id: string) => `${SB}/?path=/docs/${id}`
 /** Código de la pieza. Los archivos de `pages/` (checkout) viven fuera de `src/components`. */
 export const sourceUrl = (file: string) => (file.startsWith("pages/") ? `${REPO}/blob/main/${file}` : `${REPO}/blob/main/src/components/${file}`)
