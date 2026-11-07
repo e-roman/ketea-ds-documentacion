@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { SearchIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { search, type SearchEntry } from "@/lib/search"
 
 /** Buscador del sitio (⌘K / Ctrl+K): páginas y tokens. El índice llega ya armado desde el servidor. */
@@ -39,12 +39,14 @@ export function SearchDialog({ entries }: { entries: SearchEntry[] }) {
 
   return (
     <>
-      <Button variant="outline" className="w-full justify-start gap-2 text-muted-foreground sm:w-64" onClick={() => setOpen(true)}>
+      <Button variant="outline" className="justify-start gap-2 rounded-full text-muted-foreground sm:w-52" onClick={() => setOpen(true)} aria-label="Buscar">
         <SearchIcon />
-        <span className="flex-1 text-left">Buscar…</span>
+        <span className="hidden flex-1 text-left sm:inline">Buscar…</span>
         <kbd className="hidden rounded border px-1.5 text-[10px] sm:inline">Ctrl K</kbd>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen} title="Buscar" description="Buscá páginas y tokens del sistema de diseño.">
+        {/* shouldFilter=false: el orden y el filtro los hace lib/search.ts (difuso, con sinónimos) */}
+        <Command shouldFilter={false}>
         <CommandInput placeholder="Buscar páginas y tokens…" value={query} onValueChange={setQuery} />
         <CommandList>
           {query.trim() && hits.length === 0 && <CommandEmpty>Sin resultados.</CommandEmpty>}
@@ -62,6 +64,7 @@ export function SearchDialog({ entries }: { entries: SearchEntry[] }) {
             </CommandGroup>
           ))}
         </CommandList>
+        </Command>
       </CommandDialog>
     </>
   )

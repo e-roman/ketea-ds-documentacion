@@ -1,13 +1,16 @@
-import { PageHeader, SectionIndex } from "@/components/docs/blocks"
+import { SectionIndex } from "@/components/docs/blocks"
 import { components } from "@/lib/nav"
 
 export const metadata = { title: "Componentes · Ketea Design System" }
 
 export default function Components() {
   return (
-    <>
-      <PageHeader title="Componentes" description="Las piezas básicas de la interfaz, tal como están en la tienda." />
-      <SectionIndex base="/components" items={components} />
-    </>
+    <SectionIndex
+      title="Componentes"
+      intro="Las piezas básicas de la interfaz de Ketea, tal como están en la tienda. Cada una se muestra con sus variantes y sus props."
+      base="/components"
+      group="components"
+      items={components}
+    />
   )
 }

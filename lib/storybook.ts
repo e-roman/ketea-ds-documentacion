@@ -7,6 +7,9 @@ export const REPO = "https://github.com/e-roman/tiendaKetea"
 /** Repositorio de los design tokens (fuente de las foundations). */
 export const TOKENS_REPO = "https://github.com/e-roman/ketea-design-tokens"
 
+/** Archivo de Figma del sistema (Ketea DS), tomado del README de los tokens. */
+export const FIGMA = "https://www.figma.com/design/lXKFv02FouHJOUG9Qrsib2"
+
 export const storyUrl = (id: string) => `${SB}/iframe.html?id=${id}&viewMode=story`
 export const docsUrl = (id: string) => `${SB}/?path=/docs/${id}`
 export const sourceUrl = (file: string) => `${REPO}/blob/main/src/components/${file}`

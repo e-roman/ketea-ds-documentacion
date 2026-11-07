@@ -1,13 +1,16 @@
-import { PageHeader, SectionIndex } from "@/components/docs/blocks"
+import { SectionIndex } from "@/components/docs/blocks"
 import { foundations } from "@/lib/nav"
 
 export const metadata = { title: "Foundations · Ketea Design System" }
 
 export default function Foundations() {
   return (
-    <>
-      <PageHeader title="Foundations" description="Las decisiones de diseño de Ketea, escritas como variables." />
-      <SectionIndex base="/foundations" items={foundations} />
-    </>
+    <SectionIndex
+      title="Foundations"
+      intro="Los fundamentos del sistema de Ketea: color, tipografía, spacing y tokens que garantizan consistencia entre Figma y el sitio."
+      base="/foundations"
+      group="foundations"
+      items={foundations}
+    />
   )
 }

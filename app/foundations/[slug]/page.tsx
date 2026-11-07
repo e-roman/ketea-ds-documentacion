@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { PageHeader } from "@/components/docs/blocks"
 import { FoundationView } from "@/components/docs/foundation-views"
 import { foundations } from "@/lib/nav"
+import { TOKENS_REPO } from "@/lib/storybook"
 
 export const generateStaticParams = () => foundations.map((f) => ({ slug: f.slug }))
 
@@ -11,7 +12,7 @@ export default async function FoundationPage({ params }: { params: Promise<{ slu
   if (!item) notFound()
   return (
     <>
-      <PageHeader title={item.title} description={item.description} />
+      <PageHeader title={item.title} description={item.description} links={{ github: TOKENS_REPO }} />
       <FoundationView slug={slug} />
     </>
   )

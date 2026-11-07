@@ -1,13 +1,16 @@
-import { PageHeader, SectionIndex } from "@/components/docs/blocks"
+import { SectionIndex } from "@/components/docs/blocks"
 import { patterns } from "@/lib/nav"
 
 export const metadata = { title: "Patrones · Ketea Design System" }
 
 export default function Patterns() {
   return (
-    <>
-      <PageHeader title="Patrones" description="Bloques compuestos que combinan varios componentes." />
-      <SectionIndex base="/patterns" items={patterns} />
-    </>
+    <SectionIndex
+      title="Patrones"
+      intro="Bloques compuestos que combinan varios componentes para resolver una necesidad de la tienda."
+      base="/patterns"
+      group="patterns"
+      items={patterns}
+    />
   )
 }

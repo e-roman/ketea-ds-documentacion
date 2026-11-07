@@ -1,4 +1,4 @@
-import { PageHeader, Section } from "@/components/docs/blocks"
+import { PageContainer, PageHeader, Section } from "@/components/docs/blocks"
 import { SB, TOKENS_REPO } from "@/lib/storybook"
 
 export const metadata = { title: "Empezar · Ketea Design System" }
@@ -7,11 +7,15 @@ const code = "rounded-lg border bg-muted p-4 font-mono text-xs overflow-x-auto"
 
 export default function GetStarted() {
   return (
-    <>
-      <PageHeader title="Empezar" description="El sistema de diseño de Ketea reúne los tokens, los componentes y los patrones de la tienda en un solo lugar." />
+    <PageContainer>
+      <PageHeader
+        title="Empezar"
+        description="Ketea DS es el sistema de diseño de la tienda de Ketea. Reúne tokens, componentes y patrones con una sola fuente de verdad, de Figma al código."
+        links={{ github: TOKENS_REPO }}
+      />
       <Section title="Qué incluye">
         <ul className="list-disc space-y-1 pl-5 text-sm">
-          <li><b>Foundations:</b> los design tokens (color, tipografía, spacing, radius, shadow, border, opacity y size).</li>
+          <li><b>Foundations:</b> los design tokens (color, tipografía, spacing, radius, shadow, border, opacity, motion y size).</li>
           <li><b>Componentes y patrones:</b> las piezas reales de la tienda, publicadas en <a className="underline underline-offset-4" href={SB} target="_blank" rel="noreferrer">Storybook</a>.</li>
         </ul>
       </Section>
@@ -28,6 +32,6 @@ export default function GetStarted() {
   border-radius: var(--radius-md);
 }`}</pre>
       </Section>
-    </>
+    </PageContainer>
   )
 }

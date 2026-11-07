@@ -63,16 +63,17 @@ function ColorView() {
   const { ramps, brand, semantic } = colorGroups()
   return (
     <>
-      <Section title="Primitivos" intro="Las escalas de la paleta, de 50 a 950. Son la materia prima: solo las usa la capa semántica.">
-        <div className="space-y-4">
+      <Section title="Primitivos" intro="Neutral y la escala de marca van de 50 a 950; los colores de estado (verde, rojo, amarillo y azul de info) tienen seis pasos. Son la materia prima: solo las usa la capa semántica.">
+        <div className="space-y-6">
           {[...ramps].map(([ramp, tokens]) => (
             <div key={ramp}>
-              <p className="mb-1 text-sm font-medium capitalize">{ramp.replace("-", " ")}</p>
-              <div className="flex flex-wrap gap-1">
+              <p className="mb-2 text-sm font-medium capitalize">{ramp.replace("-", " ")}</p>
+              {/* 11 columnas que reparten el 100% del ancho: las escalas completas llenan la fila */}
+              <div className="grid grid-cols-6 gap-2 sm:grid-cols-11">
                 {tokens.map((t) => (
-                  <div key={t.name} className="w-14 text-center">
-                    <span className="block h-10 rounded border" style={{ background: t.resolved }} />
-                    <span className="text-[10px] text-muted-foreground">{t.name.split("-").pop()}</span>
+                  <div key={t.name} className="text-center">
+                    <span className="block h-20 rounded-lg border" style={{ background: t.resolved }} />
+                    <span className="mt-1 block text-xs text-muted-foreground">{t.name.split("-").pop()}</span>
                   </div>
                 ))}
               </div>

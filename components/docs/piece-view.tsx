@@ -1,4 +1,3 @@
-import { ExternalLinkIcon } from "lucide-react"
 import { PageHeader, PropsTable, Section } from "@/components/docs/blocks"
 import { Badge } from "@/components/ui/badge"
 import type { Piece } from "@/lib/pieces"
@@ -8,12 +7,7 @@ import { docsUrl, sourceUrl, storyUrl } from "@/lib/storybook"
 export function PieceView({ piece }: { piece: Piece }) {
   return (
     <>
-      <PageHeader title={piece.title} description={piece.description}>
-        <div className="flex flex-wrap gap-3 pt-1 text-sm">
-          <a className="inline-flex items-center gap-1 underline underline-offset-4" href={docsUrl(piece.docsId)} target="_blank" rel="noreferrer">Ver en Storybook <ExternalLinkIcon className="size-3" /></a>
-          <a className="inline-flex items-center gap-1 underline underline-offset-4" href={sourceUrl(piece.file)} target="_blank" rel="noreferrer">Código <ExternalLinkIcon className="size-3" /></a>
-        </div>
-      </PageHeader>
+      <PageHeader title={piece.title} description={piece.description} links={{ github: sourceUrl(piece.file), storybook: docsUrl(piece.docsId) }} />
 
       <Section title="Variantes" intro="Cada vista es el componente real de la tienda, publicado en Storybook.">
         <div className="space-y-6">
