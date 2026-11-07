@@ -13,6 +13,7 @@ export const TOKENS_REPO = "https://github.com/e-roman/ketea-design-tokens"
 /** Archivo de Figma del sistema (Ketea DS), tomado del README de los tokens. */
 export const FIGMA = "https://www.figma.com/design/lXKFv02FouHJOUG9Qrsib2"
 
-export const storyUrl = (id: string) => `${SB}/iframe.html?id=${id}&viewMode=story`
+/** `embed=1` hace que la story le avise su alto a la documentación (ver .storybook/preview.jsx de la tienda). */
+export const storyUrl = (id: string) => `${SB}/iframe.html?id=${id}&viewMode=story&embed=1`
 export const docsUrl = (id: string) => `${SB}/?path=/docs/${id}`
 export const sourceUrl = (file: string) => `${REPO}/blob/main/src/components/${file}`
