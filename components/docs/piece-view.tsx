@@ -34,11 +34,14 @@ export function PieceView({ piece }: { piece: Piece }) {
           design: (
             <>
               <Section title="Variantes" intro="Cada vista es el componente real de la tienda, publicado en Storybook.">
+                {piece.stories.length === 0 && (
+                  <p className="text-sm text-muted-foreground">Este componente no dibuja nada en pantalla, así que no tiene vista previa. Podés probarlo en su story de Storybook.</p>
+                )}
                 <div className="space-y-6">
                   {piece.stories.map((s) => (
                     <figure key={s.id} className="space-y-2">
                       <figcaption><Badge variant="secondary">{s.label}</Badge></figcaption>
-                      <StoryFrame title={`${piece.title} · ${s.label}`} src={storyUrl(s.id)} fallbackHeight={piece.previewHeight ?? 200} className="rounded-lg border bg-white" />
+                      <StoryFrame title={`${piece.title} · ${s.label}`} src={storyUrl(s.id)} fallbackHeight={piece.previewHeight ?? 200} width={s.width} className="rounded-lg border bg-white" />
                     </figure>
                   ))}
                 </div>

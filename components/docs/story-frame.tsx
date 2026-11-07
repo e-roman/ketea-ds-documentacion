@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react"
 
 /**
+ * `width`: ancho máximo del marco. Las stories «mobile» se muestran en un marco angosto (por ejemplo 390 px), porque
+ * Bootstrap decide la versión mobile o desktop por el ancho del propio marco.
+ *
  * Story de Storybook embebida. La story le avisa su alto por postMessage (.storybook/preview.jsx de la tienda)
  * y el iframe se ajusta, así no queda ninguna barra de scroll. Hasta que llega el primer aviso usa `fallbackHeight`
  * y deja el scroll disponible, para no cortar el contenido si el Storybook publicado todavía no lo envía.
  */
-export function StoryFrame({ title, src, fallbackHeight = 200, className = "" }: { title: string; src: string; fallbackHeight?: number; className?: string }) {
+export function StoryFrame({ title, src, fallbackHeight = 200, width, className = "" }: { title: string; src: string; fallbackHeight?: number; width?: number; className?: string }) {
   const ref = useRef<HTMLIFrameElement>(null)
   const [height, setHeight] = useState<number | null>(null)
 
@@ -28,8 +31,8 @@ export function StoryFrame({ title, src, fallbackHeight = 200, className = "" }:
       src={src}
       loading="lazy"
       scrolling={height === null ? "auto" : "no"}
-      style={{ height: height ?? fallbackHeight }}
-      className={`block w-full overflow-hidden ${className}`}
+      style={{ height: height ?? fallbackHeight, maxWidth: width }}
+      className={`mx-auto block w-full overflow-hidden ${className}`}
     />
   )
 }
