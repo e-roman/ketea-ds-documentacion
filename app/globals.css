@@ -9,6 +9,9 @@
   --color-foreground: var(--foreground);
   /* Azul de marca: el layout lo inyecta desde @ketea/tokens (color-brand-default) */
   --color-brand: var(--brand);
+  /* Verde y rojo de los iconos «sí / no»: también salen de @ketea/tokens (feedback) */
+  --color-success: var(--success);
+  --color-danger: var(--danger);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);

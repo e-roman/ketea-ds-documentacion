@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { ArrowRightIcon } from "lucide-react"
+import { ArrowRightIcon, CheckIcon, XIcon } from "lucide-react"
+import { StoryFrame } from "@/components/docs/story-frame"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import type { NavItem } from "@/lib/nav"
@@ -78,6 +79,59 @@ export function SectionIndex({ title, intro, base, group, items }: { title: stri
         ))}
       </ul>
     </PageContainer>
+  )
+}
+
+/** Círculo con check verde (sí) o X roja (no). Es el mismo icono en toda la documentación. */
+export function StatusIcon({ ok, className = "size-5" }: { ok: boolean; className?: string }) {
+  const Icon = ok ? CheckIcon : XIcon
+  return (
+    <span role="img" aria-label={ok ? "Correcto" : "Incorrecto"} className={`inline-grid shrink-0 place-items-center rounded-full text-white ${ok ? "bg-success" : "bg-danger"} ${className}`}>
+      <Icon strokeWidth={3} className="size-[60%]" aria-hidden />
+    </span>
+  )
+}
+
+/** Cuándo usarlo (check verde) y cuándo evitarlo (X roja), en dos columnas. */
+export function WhenToUse({ use, avoid }: { use: string[]; avoid: string[] }) {
+  const col = (ok: boolean, title: string, items: string[]) => (
+    <div className="rounded-2xl bg-muted p-6">
+      <h3 className="mb-4 flex items-center gap-3 text-lg font-semibold">
+        <StatusIcon ok={ok} />
+        {title}
+      </h3>
+      <ul className="list-disc space-y-3 pl-5 text-sm">
+        {items.map((t) => (
+          <li key={t}>{t}</li>
+        ))}
+      </ul>
+    </div>
+  )
+  return (
+    <div className="grid gap-6 sm:grid-cols-2">
+      {col(true, "Cuándo usarlo", use)}
+      {col(false, "Cuándo evitarlo", avoid)}
+    </div>
+  )
+}
+
+/** Tarjetas «sí / no» con un preview (una story de Storybook) y el motivo. */
+export function DoDont({ items }: { items: { ok: boolean; title: string; text?: string; src: string }[] }) {
+  return (
+    <div className="grid gap-6 sm:grid-cols-2">
+      {items.map((it) => (
+        <figure key={it.title}>
+          <div className="relative overflow-hidden rounded-2xl bg-muted">
+            <StatusIcon ok={it.ok} className="absolute right-4 top-4 z-10 size-5" />
+            <StoryFrame title={it.title} src={it.src} fallbackHeight={420} />
+          </div>
+          <figcaption className="mt-3 text-sm">
+            <b>{it.title}</b>
+            {it.text && <span className="block text-muted-foreground">{it.text}</span>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
   )
 }
 

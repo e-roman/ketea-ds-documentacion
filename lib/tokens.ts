@@ -28,6 +28,9 @@ export function allTokens(): Token[] {
   return cache
 }
 
+/** Un token por nombre (sin "--"). */
+export const token = (name: string) => allTokens().find((t) => t.name === name)
+
 export const withPrefix = (prefix: string) => allTokens().filter((t) => t.name.startsWith(prefix))
 export const rest = (t: Token, prefix: string) => t.name.slice(prefix.length)
 

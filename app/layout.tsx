@@ -16,12 +16,15 @@ export const metadata: Metadata = {
   description: "Documentación del sistema de diseño de Ketea: tokens, componentes y patrones.",
 }
 
-/** Azul de marca: sale del paquete de tokens, no se escribe a mano. */
-const brand = allTokens().find((t) => t.name === "color-brand-default")?.resolved ?? "#385dbe"
+/** Colores de la documentación que salen del paquete de tokens, no se escriben a mano. */
+const tokenValue = (name: string, fallback: string) => allTokens().find((t) => t.name === name)?.resolved ?? fallback
+const brand = tokenValue("color-brand-default", "#385dbe")
+const success = tokenValue("color-semantic-feedback-success-text", "#15803d")
+const danger = tokenValue("color-semantic-feedback-error-border", "#ef4444")
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} style={{ "--brand": brand } as CSSProperties}>
+    <html lang="es" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} style={{ "--brand": brand, "--success": success, "--danger": danger } as CSSProperties}>
       <body className="min-h-full">
         <TooltipProvider>
           <SiteHeader entries={searchIndex()} />
