@@ -1,48 +1,7 @@
 /** Componentes y patrones documentados. Se agrega una pieza acá cuando tiene stories en Storybook. */
 
-export type Prop = [name: string, type: string, desc: string, required?: boolean]
-/** Una parte del componente. `selector` se busca dentro de la story; `side` es de qué lado se dibuja el número; `pct` lo mueve a lo largo de ese borde (0–100, por defecto 50). */
-export type AnatomyPart = { n: number; label: string; selector: string; note?: string; side: "top" | "bottom" | "left" | "right"; pct?: number }
-/** Anatomía interactiva: una story de Storybook y sus partes. */
-export type Anatomy = { story: string; /** Ancho máximo del marco en px. */ width?: number; parts: AnatomyPart[] }
-/** `width`: ancho máximo del marco en px; las stories mobile se muestran en un marco angosto. */
-export type Story = { label: string; id: string; width?: number }
-/** Cambio propio de la pieza. Lo que va entre `backticks` se muestra como código. */
-export type HistoryEntry = { date: string; text: string }
-/** Ejemplo «sí / no» con una story de Storybook como preview. */
-export type Practice = { ok: boolean; title: string; text?: string; storyId: string }
-
-export type Piece = {
-  slug: string
-  group: "components" | "patterns"
-  /** Categoría del sidebar de patrones. */
-  cat?: string
-  title: string
-  description: string
-  /** Archivo en src/components de la tienda. */
-  file: string
-  /** id de la página Docs en Storybook. */
-  docsId: string
-  /** Alto del preview en px (por defecto 200). */
-  previewHeight?: number
-  stories: Story[]
-  /** Partes del componente, con un número cada una; abren el inspector (solo las que existen en el código). */
-  anatomy?: Anatomy
-  props: Prop[]
-  use: string[]
-  avoid: string[]
-  /** Ejemplos «sí / no» con preview (pestaña Uso). */
-  practices?: Practice[]
-  /** Accesibilidad. Solo se escribe lo verificado en el código; si no hay nada, la pestaña no se muestra. */
-  /** «Rol y estructura»: nombres accesibles, roles, estados. */
-  a11y?: string[]
-  /** «Teclado»: teclas y su acción. */
-  keyboard?: { keys: string[]; action: string }[]
-  /** «Contraste»: pares de tokens de color tal como los aplica el CSS de la tienda. `min`: 4.5 para texto (por defecto) o 3 para íconos. */
-  contrast?: { element: string; fg: string; bg: string; min?: number }[]
-  /** Cambios propios de la pieza, el más nuevo primero (pestaña Historial). */
-  history?: HistoryEntry[]
-}
+import type { HistoryEntry, Piece } from "ds-docs-theme/types"
+export type { Anatomy, AnatomyPart, HistoryEntry, Piece, Practice, Prop, Story } from "ds-docs-theme/types"
 
 /** Cambios que aplican a todas las piezas de la tienda. */
 const COMMON_HISTORY: HistoryEntry[] = [

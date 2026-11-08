@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     ]
   },
   /* config options here */
+  transpilePackages: ["ds-docs-theme"],
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {

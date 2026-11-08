@@ -1,5 +1,5 @@
-import { PageContainer, PageHeader, Section } from "@/components/docs/blocks"
-import { SB, TOKENS_REPO } from "@/lib/storybook"
+import { PageContainer, PageHeader, Section } from "ds-docs-theme/docs/blocks"
+import { FIGMA, SB, TOKENS_REPO } from "@/lib/storybook"
 
 export const metadata = { title: "Empezar · Ketea Design System" }
 
@@ -11,7 +11,7 @@ export default function GetStarted() {
       <PageHeader
         title="Empezar"
         description="Ketea DS es el sistema de diseño de la tienda de Ketea. Reúne tokens, componentes y patrones con una sola fuente de verdad, de Figma al código."
-        links={{ github: TOKENS_REPO }}
+        links={{ github: TOKENS_REPO, storybook: SB, figma: FIGMA }}
       />
       <Section title="Qué incluye">
         <ul className="list-disc space-y-1 pl-5 text-sm">

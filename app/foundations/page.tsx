@@ -1,4 +1,4 @@
-import { SectionIndex } from "@/components/docs/blocks"
+import { SectionIndex } from "ds-docs-theme/docs/blocks"
 import { foundations } from "@/lib/nav"
 
 export const metadata = { title: "Foundations · Ketea Design System" }

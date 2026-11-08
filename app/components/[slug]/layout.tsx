@@ -1,5 +1,6 @@
-import { SectionShell } from "@/components/docs/section-shell"
+import { SectionShell } from "ds-docs-theme/docs/section-shell"
+import { sections } from "@/lib/nav"
 
 export default function ComponentsLayout({ children }: { children: React.ReactNode }) {
-  return <SectionShell section="components">{children}</SectionShell>
+  return <SectionShell section="components" sections={sections}>{children}</SectionShell>
 }
