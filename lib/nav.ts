@@ -1,6 +1,7 @@
 import { piecesOf } from "@/lib/pieces"
+import type { NavItem, NavSection } from "ds-docs-theme/types"
 
-export type NavItem = { slug: string; title: string; description: string; cat?: string }
+export type { NavItem }
 
 export const topNav = [
   { href: "/get-started", label: "Empezar" },
@@ -28,7 +29,7 @@ const toNav = (group: "components" | "patterns"): NavItem[] =>
 export const components = toNav("components")
 export const patterns = toNav("patterns").sort((a, b) => (a.cat ?? "").localeCompare(b.cat ?? "") || a.title.localeCompare(b.title))
 
-export const sections = [
+export const sections: NavSection[] = [
   { key: "foundations", label: "Foundations", base: "/foundations", items: foundations },
   { key: "components", label: "Componentes", base: "/components", items: components },
   { key: "patterns", label: "Patrones", base: "/patterns", items: patterns },

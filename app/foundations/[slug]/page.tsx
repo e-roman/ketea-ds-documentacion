@@ -1,10 +1,11 @@
 import { Suspense } from "react"
 import { notFound } from "next/navigation"
-import { PageHeader } from "@/components/docs/blocks"
-import { FoundationView } from "@/components/docs/foundation-views"
-import { PageFallback } from "@/components/docs/page-fallback"
+import { PageHeader } from "ds-docs-theme/docs/blocks"
+import { FoundationView } from "ds-docs-theme/docs/foundation-views"
+import { PageFallback } from "ds-docs-theme/docs/page-fallback"
 import { foundations } from "@/lib/nav"
-import { TOKENS_REPO } from "@/lib/storybook"
+import { FIGMA, SB, TOKENS_REPO } from "@/lib/storybook"
+import { allTokens } from "@/lib/tokens"
 
 export const generateStaticParams = () => foundations.map((f) => ({ slug: f.slug }))
 
@@ -14,8 +15,8 @@ async function FoundationContent({ params }: { params: Promise<{ slug: string }>
   if (!item) notFound()
   return (
     <>
-      <PageHeader title={item.title} description={item.description} links={{ github: TOKENS_REPO }} />
-      <FoundationView slug={slug} />
+      <PageHeader title={item.title} description={item.description} links={{ github: TOKENS_REPO, storybook: SB, figma: FIGMA }} />
+      <FoundationView slug={slug} tokens={allTokens()} />
     </>
   )
 }
