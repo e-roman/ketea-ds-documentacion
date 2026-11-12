@@ -1386,7 +1386,15 @@ const base: Piece[] = [
  * de la ventana, no al de la caja, así que solo en un iframe angosto se ven como en un celular. Esas siguen con iframe.
  */
 const keteaStory = (id: string) => createElement(KeteaStory, { id })
+/**
+ * Piezas que dependen del documento entero y no funcionan dentro de un shadow root: abren su panel con el JavaScript de Bootstrap
+ * (`document.getElementById`, backdrop en el `body`, botones que cierran por eventos delegados) o con un portal al `body`.
+ * Se quedan con el iframe de Storybook, donde sí funcionan.
+ */
+const IFRAME_ONLY = new Set(["sidebar-cart", "login-modal", "discount-methods-modal", "quick-view", "mega-menu"])
+
 const inline = (p: Piece): Piece => {
+  if (IFRAME_ONLY.has(p.slug)) return p
   const fixedWidth = new Set(p.stories.filter((s) => s.width !== undefined).map((s) => s.id))
   const anatomyInline = p.anatomy && !fixedWidth.has(p.anatomy.story)
   const stories = p.stories.map((s) => (s.width !== undefined ? s : { ...s, node: keteaStory(s.id) }))

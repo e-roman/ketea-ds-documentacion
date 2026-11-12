@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
       { source: "/sb/:path*", destination: `${SB_ORIGIN}/:path*` },
       // las stories piden las imágenes de la tienda con rutas desde la raíz (`/assets/img/...`)
       { source: "/assets/:path*", destination: `${SB_ORIGIN}/assets/:path*` },
+      // algunas stories piden las imágenes con ruta relativa (`assets/img/...`): dentro de Storybook resuelve a `/sb/assets/...`,
+      // pero en línea resuelve contra la página (`/patterns/assets/...`)
+      { source: "/:section(components|patterns)/assets/:path*", destination: `${SB_ORIGIN}/assets/:path*` },
     ]
   },
   /* config options here */
