@@ -33,10 +33,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       style={{ "--brand": brand, "--success": success, "--danger": danger, "--doc-font-sans": "var(--font-geist-sans)", "--doc-font-mono": "var(--font-geist-mono)" } as CSSProperties}
     >
-      <head>
-        {/* Fuentes de las vistas en línea de la tienda: tienen que estar en el documento (un @font-face no funciona dentro de un shadow root) */}
-        <link rel="stylesheet" href="/ketea-preview/fonts.css" data-ketea-fonts="" />
-      </head>
       <body className="min-h-full">
         <TooltipProvider>
           <SiteHeader entries={searchIndex()} brand={siteBrand} topNav={topNav} />

@@ -1381,19 +1381,23 @@ const base: Piece[] = [
 ]
 
 /**
- * Piezas que se muestran en línea (prueba): sus stories se dibujan dentro de un shadow root con el paquete de vistas de la tienda,
- * sin el iframe de Storybook. El resto sigue con iframes.
+ * Las vistas se dibujan en línea: cada story va dentro de un shadow root con el paquete de vistas de la tienda (ver lib/ketea-story.tsx),
+ * sin un iframe de Storybook por vista. La excepción son las stories con `width` (marcos de celular): el CSS responsive responde al ancho
+ * de la ventana, no al de la caja, así que solo en un iframe angosto se ven como en un celular. Esas siguen con iframe.
  */
-const INLINE = new Set(["button", "product-card", "confirm-modal"])
-/** Diálogos y drawers: son `position: fixed`, sin ancho propio, así que la vista ocupa todo el ancho de la caja. */
-const OVERLAYS = new Set(["confirm-modal"])
 const keteaStory = (id: string) => createElement(KeteaStory, { id })
-const inline = (p: Piece): Piece => ({
-  ...p,
-  stories: p.stories.map((s) => ({ ...s, node: keteaStory(s.id) })),
-  anatomy: p.anatomy && { ...p.anatomy, node: keteaStory(p.anatomy.story), fill: OVERLAYS.has(p.slug) },
-})
-export const pieces: Piece[] = base.map((p) => (INLINE.has(p.slug) ? inline(p) : p))
+const inline = (p: Piece): Piece => {
+  const fixedWidth = new Set(p.stories.filter((s) => s.width !== undefined).map((s) => s.id))
+  const anatomyInline = p.anatomy && !fixedWidth.has(p.anatomy.story)
+  return {
+    ...p,
+    stories: p.stories.map((s) => (s.width !== undefined ? s : { ...s, node: keteaStory(s.id) })),
+    // la vista ocupa todo el ancho de la caja (los diálogos y drawers son `position: fixed` y no tienen un ancho propio)
+    anatomy: p.anatomy && (anatomyInline ? { ...p.anatomy, node: keteaStory(p.anatomy.story), fill: true } : p.anatomy),
+    practices: p.practices?.map((x) => ({ ...x, node: keteaStory(x.storyId) })),
+  }
+}
+export const pieces: Piece[] = base.map(inline)
 
 export const piecesOf = (group: Piece["group"]) => pieces.filter((p) => p.group === group).sort((a, b) => a.title.localeCompare(b.title))
 export const pieceBySlug = (group: Piece["group"], slug: string) => pieces.find((p) => p.group === group && p.slug === slug)
