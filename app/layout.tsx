@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      style={{ "--brand": brand, "--success": success, "--danger": danger, "--doc-font-sans": "var(--font-geist-sans)", "--doc-font-mono": "var(--font-geist-mono)" } as CSSProperties}
+      style={{ "--brand": brand, "--success": success, "--danger": danger, "--doc-stage": "#ffffff", "--doc-font-sans": "var(--font-geist-sans)", "--doc-font-mono": "var(--font-geist-mono)" } as CSSProperties}
     >
       <body className="min-h-full">
         <TooltipProvider>
