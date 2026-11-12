@@ -370,45 +370,6 @@ const base: Piece[] = [
     history: [{ date: "2026-11-06", text: "Story publicada en Storybook (`Patterns/Producto/Specifications blocks`)." }, ...COMMON_HISTORY],
   },
   {
-    slug: "product-specifications", group: "patterns", cat: "Producto", title: "Product specifications", file: "Product/ProductSpecifications.jsx",
-    description: "Sección de especificaciones técnicas del detalle de producto, en pestañas.",
-    docsId: "patterns-producto-product-specifications--docs",
-    previewHeight: 380,
-    stories: [{ label: "Default", id: "patterns-producto-product-specifications--default" }],
-    props: [],
-    use: ["En el detalle de producto, para el contenido técnico."],
-    avoid: ["Si la ficha ya usa Product info tabs: evitá mostrar las dos."],
-    a11y: ["Las pestañas usan `role=\"tablist\"`, `tab` y `tabpanel`, con `aria-controls`, `aria-labelledby` y `aria-selected`."],
-    history: [{ date: "2026-11-06", text: "Story publicada en Storybook (`Patterns/Producto/Product specifications`)." }, ...COMMON_HISTORY],
-  },
-  {
-    slug: "product-reviews", group: "patterns", cat: "Producto", title: "Product reviews", file: "Product/ProductReviews.jsx",
-    description: "Opiniones del producto: puntaje promedio, distribución por estrellas y lista de reseñas.",
-    docsId: "patterns-producto-product-reviews--docs",
-    previewHeight: 880,
-    stories: [{ label: "Default", id: "patterns-producto-product-reviews--default" }],
-    props: [],
-    use: ["En el detalle de producto, después de la información técnica."],
-    avoid: ["Si el producto todavía no tiene opiniones."],
-    a11y: ["Las barras de distribución son `role=\"progressbar\"` con `aria-valuemin`, `aria-valuemax` y `aria-valuenow`."],
-    history: [{ date: "2026-11-06", text: "Story publicada en Storybook (`Patterns/Producto/Product reviews`)." }, ...COMMON_HISTORY],
-  },
-  {
-    slug: "products-others", group: "patterns", cat: "Producto", title: "Products others", file: "Product/ProductsOthers.jsx",
-    description: "Carrusel «Otros productos» al final del detalle de producto.",
-    docsId: "patterns-producto-products-others--docs",
-    previewHeight: 200,
-    stories: [{ label: "Default", id: "patterns-producto-products-others--default" }],
-    props: [["openProduct", "(slug) => void", "Se llama con el slug al abrir un producto.", true]],
-    use: ["Al final del detalle de producto, para seguir explorando."],
-    avoid: ["Para resultados de una búsqueda: usá una grilla de Product card."],
-    a11y: [
-      "Las flechas tienen nombre accesible (`aria-label`: «Anterior» y «Siguiente»).",
-      "El carrusel (Swiper) tiene el teclado habilitado (`keyboard`).",
-    ],
-    history: [{ date: "2026-11-06", text: "Story publicada en Storybook (`Patterns/Producto/Products others`)." }, ...COMMON_HISTORY],
-  },
-  {
     slug: "quick-view", group: "patterns", cat: "Overlays", title: "Quick view", file: "QuickView.jsx",
     description: "Panel lateral con el resumen de un producto, para agregarlo al carrito sin salir del listado.",
     docsId: "patterns-overlays-quick-view--docs",
@@ -1165,17 +1126,6 @@ const base: Piece[] = [
     history: [{ date: "2026-11-07", text: "Story publicada en Storybook (`Patterns/Inicio y contenido/Product carousel`)." }, ...COMMON_HISTORY],
   },
   {
-    slug: "scroll-to-top", group: "patterns", cat: "Header y navegación", title: "Scroll to top", file: "ScrollToTop.jsx",
-    description: "Sube la página al inicio cada vez que cambia la ruta. No dibuja nada.",
-    docsId: "components-scroll-to-top--docs",
-    stories: [],
-    props: [],
-    use: ["Una sola vez, dentro del router (`App.jsx`): al cambiar el `pathname`, hace `window.scrollTo` arriba, sin animación."],
-    avoid: ["Para subir al tocar un botón: no tiene interfaz. Solo reacciona al cambio de ruta, no a los parámetros de búsqueda (`?view=`)."],
-    a11y: ["No tiene interfaz. Al subir al inicio no mueve el foco del teclado."],
-    history: [{ date: "2026-11-07", text: "Story publicada en Storybook (`Components/Scroll to top`): una página larga con un botón que cambia de ruta." }, ...COMMON_HISTORY],
-  },
-  {
     slug: "support-chat", group: "patterns", cat: "Inicio y contenido", title: "Support chat", file: "SupportChat.jsx",
     description: "Botón flotante de ayuda que envía la consulta del cliente por WhatsApp.",
     docsId: "patterns-inicio-y-contenido-support-chat--docs",
@@ -1391,7 +1341,7 @@ const keteaStory = (id: string) => createElement(KeteaStory, { id })
  * (`document.getElementById`, backdrop en el `body`, botones que cierran por eventos delegados) o con un portal al `body`.
  * Se quedan con el iframe de Storybook, donde sí funcionan.
  */
-const IFRAME_ONLY = new Set(["sidebar-cart", "login-modal", "discount-methods-modal", "quick-view", "mega-menu"])
+const IFRAME_ONLY = new Set(["sidebar-cart", "login-modal", "discount-methods-modal", "quick-view"])
 
 const inline = (p: Piece): Piece => {
   if (IFRAME_ONLY.has(p.slug)) return p
