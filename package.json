@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ketea/tokens": "github:e-roman/ketea-design-tokens#v3.0.0",
-    "ds-docs-theme": "github:e-roman/ds-docs-theme#v1.2.0",
+    "ds-docs-theme": "github:e-roman/ds-docs-theme#v1.3.0",
     "next": "16.4.5",
     "react": "19.3.0",
     "react-dom": "19.3.0"
