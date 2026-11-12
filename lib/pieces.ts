@@ -1,6 +1,8 @@
 /** Componentes y patrones documentados. Se agrega una pieza acá cuando tiene stories en Storybook. */
 
 import type { HistoryEntry, Piece } from "ds-docs-theme/types"
+import { createElement } from "react"
+import { KeteaStory } from "./ketea-story"
 export type { Anatomy, AnatomyPart, HistoryEntry, Piece, Practice, Prop, Story } from "ds-docs-theme/types"
 
 /** Cambios que aplican a todas las piezas de la tienda. */
@@ -8,7 +10,7 @@ const COMMON_HISTORY: HistoryEntry[] = [
   { date: "2026-11-06", text: "Estilos migrados a tokens (`@ketea/tokens` v3.0.0): color, espaciado, radios, sombras, tipografía y movimiento." },
 ]
 
-export const pieces: Piece[] = [
+const base: Piece[] = [
   {
     slug: "button-spinner", group: "components", title: "Button spinner", file: "ButtonSpinner.jsx",
     description: "Spinner y texto de carga dentro de un botón mientras se procesa una acción.",
@@ -1377,6 +1379,21 @@ export const pieces: Piece[] = [
     history: [{ date: "2026-11-07", text: "Story publicada en Storybook (`Components/Progress`)." }, ...COMMON_HISTORY],
   },
 ]
+
+/**
+ * Piezas que se muestran en línea (prueba): sus stories se dibujan dentro de un shadow root con el paquete de vistas de la tienda,
+ * sin el iframe de Storybook. El resto sigue con iframes.
+ */
+const INLINE = new Set(["button", "product-card", "confirm-modal"])
+/** Diálogos y drawers: son `position: fixed`, sin ancho propio, así que la vista ocupa todo el ancho de la caja. */
+const OVERLAYS = new Set(["confirm-modal"])
+const keteaStory = (id: string) => createElement(KeteaStory, { id })
+const inline = (p: Piece): Piece => ({
+  ...p,
+  stories: p.stories.map((s) => ({ ...s, node: keteaStory(s.id) })),
+  anatomy: p.anatomy && { ...p.anatomy, node: keteaStory(p.anatomy.story), fill: OVERLAYS.has(p.slug) },
+})
+export const pieces: Piece[] = base.map((p) => (INLINE.has(p.slug) ? inline(p) : p))
 
 export const piecesOf = (group: Piece["group"]) => pieces.filter((p) => p.group === group).sort((a, b) => a.title.localeCompare(b.title))
 export const pieceBySlug = (group: Piece["group"], slug: string) => pieces.find((p) => p.group === group && p.slug === slug)
