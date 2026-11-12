@@ -1389,9 +1389,12 @@ const keteaStory = (id: string) => createElement(KeteaStory, { id })
 const inline = (p: Piece): Piece => {
   const fixedWidth = new Set(p.stories.filter((s) => s.width !== undefined).map((s) => s.id))
   const anatomyInline = p.anatomy && !fixedWidth.has(p.anatomy.story)
+  const stories = p.stories.map((s) => (s.width !== undefined ? s : { ...s, node: keteaStory(s.id) }))
   return {
     ...p,
-    stories: p.stories.map((s) => (s.width !== undefined ? s : { ...s, node: keteaStory(s.id) })),
+    stories,
+    // como en Orali: cada vista con su título y su caja, en vez de una tira de pestañas que las mezcla
+    groups: stories.length > 1 ? stories.map((s) => ({ title: s.label, stories: [s] })) : undefined,
     // la vista ocupa todo el ancho de la caja (los diálogos y drawers son `position: fixed` y no tienen un ancho propio)
     anatomy: p.anatomy && (anatomyInline ? { ...p.anatomy, node: keteaStory(p.anatomy.story), fill: true } : p.anatomy),
     practices: p.practices?.map((x) => ({ ...x, node: keteaStory(x.storyId) })),
