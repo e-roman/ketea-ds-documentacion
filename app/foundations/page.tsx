@@ -3,7 +3,7 @@ import { foundations } from "@/lib/nav"
 
 export const metadata = { title: "Foundations · Ketea Design System" }
 
-export default function Foundations() {
+export default function Page() {
   return (
     <SectionIndex
       title="Foundations"

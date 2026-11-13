@@ -3,11 +3,11 @@ import { patterns } from "@/lib/nav"
 
 export const metadata = { title: "Patrones · Ketea Design System" }
 
-export default function Patterns() {
+export default function Page() {
   return (
     <SectionIndex
       title="Patrones"
-      intro="Bloques compuestos que combinan varios componentes para resolver una necesidad de la tienda."
+      intro="Composiciones de componentes para flujos completos: navegación, producto, carrito, checkout y cuenta."
       base="/patterns"
       group="patterns"
       items={patterns}

@@ -1,0 +1,66 @@
+/* Estilos propios de la documentación para las vistas de la tienda (se cargan junto con shop.css dentro del shadow root). */
+.shop-scope { font-family: var(--font-family-sans); }
+.demo-w-280 { width: 280px; max-width: 100%; }
+.demo-w-392 { width: 392px; max-width: 100%; }
+.demo-w-400 { width: 400px; max-width: 100%; }
+.demo-w-420 { width: 420px; max-width: 100%; }
+.demo-w-480 { width: 480px; max-width: 100%; }
+.demo-w-520 { width: 520px; max-width: 100%; }
+.demo-w-560 { width: 560px; max-width: 100%; }
+.demo-w-600 { width: 600px; max-width: 100%; }
+.demo-w-872 { width: 872px; max-width: 100%; }
+.demo-w-880 { width: 880px; max-width: 100%; }
+.demo-w-full { width: 100%; }
+.demo-stack-12 { display: grid; gap: 12px; }
+.demo-box-sample { padding: 12px; background: rgba(127, 127, 127, 0.2); border-radius: 6px; }
+/* Overlays de la tienda (position: fixed) dentro de un recuadro: transform crea el contenedor de los fixed */
+.live-fixed { position: relative; transform: translateZ(0); overflow: hidden; height: 760px; background: var(--color-surface-default); border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); }
+.demo-h-480 { height: 480px; }
+.demo-minh-320 { min-height: 320px; padding: 16px; }
+/* En la documentación el footer no lleva el margen superior de la página real */
+.shop-scope .footer--spaced { margin-top: 0; }
+/* Header: el subnav completo cabe sin la etiqueta «Nuestros productos:» */
+.shop-scope .site-header__subnav-label { display: none; }
+/* El menú mobile es md:hidden en la tienda; en la vista de 392 px del recuadro se muestra siempre */
+.shop-scope .mobile-menu { display: flex; }
+/* Vista en iframe (390 px) para que apliquen los breakpoints mobile reales */
+.live-frame { display: block; width: 390px; max-width: 100%; border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); background: var(--color-surface-default); }
+.live-frame--nav { height: 176px; }
+/* Iconografía: medidor de tamaño (oculto) y muestra de color de ícono */
+.icon-probe { display: inline-block; position: absolute; visibility: hidden; }
+.swatch-icon { display: inline-grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); }
+.swatch-icon--dark { background: var(--color-surface-inverse); }
+/* El medidor oculto (position: absolute) queda dentro de su celda y no agrega scroll */
+[data-isolated-root] { position: relative; }
+
+/* Clases de demo de las páginas convertidas */
+.demo-w-120 { width: 120px; max-width: 100%; }
+.demo-w-160 { width: 160px; max-width: 100%; }
+.demo-w-180 { width: 180px; max-width: 100%; }
+.demo-w-200 { width: 200px; max-width: 100%; }
+.demo-w-260 { width: 260px; max-width: 100%; }
+.demo-w-280 { width: 280px; max-width: 100%; }
+.demo-w-300 { width: 300px; max-width: 100%; }
+.demo-w-320 { width: 320px; max-width: 100%; }
+.demo-w-340 { width: 340px; max-width: 100%; }
+.demo-w-360 { width: 360px; max-width: 100%; }
+.demo-w-420 { width: 420px; max-width: 100%; }
+.demo-w-460 { width: 460px; max-width: 100%; }
+.demo-w-96 { width: 96px; max-width: 100%; }
+.demo-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
+.demo-row-end { justify-content: flex-end; }
+.demo-stack-8 { display: grid; gap: 8px; }
+.demo-mt-16 { margin-top: 16px; }
+.demo-pad-16 { padding: 16px; }
+.demo-tabpanel { padding: 16px 4px; }
+.demo-card-body { padding: 4px; }
+.demo-card-sub { font-size: 14px; }
+
+/* Badge: contador posicionado sobre un ícono */
+.badge-anchor { position: relative; display: inline-flex; }
+.badge-anchor__count { position: absolute; top: -6px; right: -8px; }
+
+/* Button: estados forzados para mostrarlos fijos */
+.btn.is-hover { background-color: var(--btn-bg-h); color: var(--btn-fg-h); }
+.btn.is-active { background-color: var(--btn-bg-a); color: var(--btn-fg-a); }
+.btn.is-focus { outline: var(--button-focus-width) solid var(--button-focus-ring); outline-offset: var(--button-focus-offset); }

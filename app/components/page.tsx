@@ -3,11 +3,11 @@ import { components } from "@/lib/nav"
 
 export const metadata = { title: "Componentes · Ketea Design System" }
 
-export default function Components() {
+export default function Page() {
   return (
     <SectionIndex
       title="Componentes"
-      intro="Las piezas básicas de la interfaz de Ketea, tal como están en la tienda. Cada una se muestra con sus variantes y sus props."
+      intro="Bloques de interfaz reutilizables de la tienda de Ketea, con sus variantes, estados y reglas de uso."
       base="/components"
       group="components"
       items={components}
