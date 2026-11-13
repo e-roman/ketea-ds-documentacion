@@ -1,16 +1,13 @@
-import { FileText, Headphones, Package, RotateCcw, Search, ShieldCheck, ShoppingCart, Truck, Phone, Mail, X } from "lucide-react"
+import { FileText, Headphones, Heart, Package, Search, ShieldCheck, ShoppingCart, Truck, Phone, Mail } from "lucide-react"
 import { Callout } from "@/content/compat/blocks"
 import { buildPage } from "@/content/compat/build-page"
 import Variants from "@/content/compat/variants"
 import { EmptyState } from "@shop/components/patterns/empty-state"
 import { FeatureRow } from "@shop/components/patterns/feature-row"
-import { HowItWorks } from "@shop/components/patterns/how-it-works"
 import { InfoPanel } from "@shop/components/patterns/info-panel"
 import { PageHeader } from "@shop/components/patterns/page-header"
 import { SectionHeader } from "@shop/components/patterns/section-header"
-import { TrustStrip } from "@shop/components/patterns/trust-strip"
 import { CouponField } from "@shop/components/patterns/coupon-field"
-import { ShippingCheck } from "@shop/components/patterns/shipping-check"
 import { buttonClasses } from "@shop/components/ui/button"
 import { SB } from "@/lib/storybook"
 import { CtaDemo, DrawerDemo, ModalDemo, StepDemo } from "./pattern-demos"
@@ -85,29 +82,6 @@ export const patternPanels: Record<string, () => ReturnType<typeof buildPage>> =
       keys: [[<kbd key="t">Tab</kbd>, "Mueve entre los pasos habilitados."], [<><kbd>Enter</kbd> / <kbd>Espacio</kbd></>, "Vuelve a un paso anterior."]],
     }),
 
-  "trust-strip": () =>
-    buildPage({
-      css: "patterns/page-parts.css", selector: /trust/, history: null, tokenNote: none,
-      purpose: [
-        { title: "Generar confianza", text: "Beneficios clave del servicio en una sola franja." },
-        { title: "Grilla responsive", text: "1, 2 o 4 columnas según el ancho." },
-        { title: "Íconos consistentes", text: "Usa Icon badge tile con tono soft-brand." },
-      ],
-      config: (
-        <Variants title="Ítems" ariaLabel="Ítems del trust strip" description={<>Prop <code>items</code>: arreglo de <code>icon</code>, <code>title</code> y <code>desc</code>.</>}
-          items={[{ value: "four", label: "4 ítems", caption: "Los textos son de ejemplo.", node: (
-            <div className="demo-w-full shop-scope"><TrustStrip items={[
-              { icon: <ShieldCheck className="icon-md" aria-hidden />, title: "Compra segura", desc: "Tus datos protegidos." },
-              { icon: <Truck className="icon-md" aria-hidden />, title: "Envío", desc: "A tu zona." },
-              { icon: <Package className="icon-md" aria-hidden />, title: "Garantía", desc: "Productos con garantía oficial." },
-              { icon: <Headphones className="icon-md" aria-hidden />, title: "Ayuda", desc: "Estamos para ayudarte." },
-            ]} /></div>) }]} />
-      ),
-      use: ["En la home o el checkout para reforzar confianza.", "Con 3 o 4 beneficios cortos."],
-      avoid: ["Con textos largos: cada ítem debe leerse de un vistazo."],
-      a11y: [<>Es una <code>&lt;section aria-label=&quot;Beneficios&quot;&gt;</code>.</>, "Los íconos son decorativos (aria-hidden): el significado está en el título."],
-    }),
-
   "feature-row": () =>
     buildPage({
       css: "patterns/page-parts.css", selector: /feature-row/, history: null, tokenNote: none,
@@ -127,23 +101,6 @@ export const patternPanels: Record<string, () => ReturnType<typeof buildPage>> =
       use: ["Para listar beneficios, pasos o canales de contacto."],
       avoid: ["Para acciones principales: usá Button."],
       a11y: ["El título es un h2: ajustá el nivel si no encaja en la jerarquía.", "Con href, el texto completo de la fila es el nombre del link."],
-    }),
-
-  "how-it-works": () =>
-    buildPage({
-      css: "patterns/how-it-works.css", history: null,
-      purpose: [
-        { title: "Explicar un proceso", text: "Tres pasos con ícono y texto corto." },
-        { title: "Un paso destacado", text: "El paso featured lleva fondo de marca y es más ancho." },
-        { title: "Responsive", text: "Fila con conectores en desktop y secuencia vertical en mobile." },
-      ],
-      config: (
-        <Variants title="Pasos" ariaLabel="Pasos de how it works" description={<>Prop <code>steps</code>. Los numerales salen de un contador CSS y son decorativos: el <code>&lt;ol&gt;</code> ya numera.</>}
-          items={[{ value: "three", label: "3 pasos", caption: "Textos de ejemplo.", node: <div className="demo-w-full shop-scope"><HowItWorks steps={steps} /></div> }]} />
-      ),
-      use: ["En la home o la página «Cómo comprar»."],
-      avoid: ["Con más de 3–4 pasos: usá una lista."],
-      a11y: ["Es una lista ordenada; los numerales son decorativos.", "Los conectores son aria-hidden."],
     }),
 
   "info-panel": () =>
@@ -176,12 +133,11 @@ export const patternPanels: Record<string, () => ReturnType<typeof buildPage>> =
           items={[
             { value: "cart", label: "Carrito vacío", caption: "Cuando el carrito no tiene productos.", node: box(420, <EmptyState icon={<ShoppingCart className="icon-lg" aria-hidden />} title="Tu carrito está vacío" text="Explorá nuestros productos y empezá tu pedido."><a href="#demo" className={buttonClasses({ size: "md" })}>Ver productos</a></EmptyState>) },
             { value: "search", label: "Sin resultados", caption: "Cuando los filtros no devuelven productos.", node: box(420, <EmptyState icon={<Search className="icon-lg" aria-hidden />} title="No encontramos productos" text="Probá con otros filtros o explorá todas las categorías."><a href="#demo" className={buttonClasses({ size: "md" })}>Eliminar filtros</a></EmptyState>) },
-            { value: "payment", label: "Pago rechazado", caption: "Cuando el pago no se pudo procesar.", node: box(420, <EmptyState icon={<X className="icon-lg" aria-hidden />} title="No pudimos procesar el pago" text="Verificá los datos de tu tarjeta o probá con otro medio de pago."><a href="#demo" className={buttonClasses({ size: "md" })}>Reintentar pago</a></EmptyState>) },
-            { value: "orders", label: "Sin órdenes", caption: "Cuando todavía no hay pedidos realizados.", node: box(420, <EmptyState icon={<FileText className="icon-lg" aria-hidden />} title="No tenés órdenes realizadas" text="Explorá nuestros productos para realizar pedidos."><a href="#demo" className={buttonClasses({ size: "md" })}>Explorá productos</a></EmptyState>) },
-            { value: "returns", label: "Sin devoluciones", caption: "Informativo: no lleva acción.", node: box(420, <EmptyState icon={<RotateCcw className="icon-lg" aria-hidden />} title="Sin devoluciones" text="Para hacer una solicitud, tu orden debe haber sido entregada y no deben haber pasado más de 7 días desde la entrega." />) },
+            { value: "orders", label: "Sin pedidos", caption: "Cuando todavía no hay pedidos realizados.", node: box(420, <EmptyState icon={<FileText className="icon-lg" aria-hidden />} title="Todavía no hiciste pedidos" text="Cuando compres, vas a ver acá el estado y el historial de tus pedidos."><a href="#demo" className={buttonClasses({ size: "md" })}>Ver productos</a></EmptyState>) },
+            { value: "favorites", label: "Sin favoritos", caption: "Cuando todavía no se marcó ningún producto.", node: box(420, <EmptyState icon={<Heart className="icon-lg" aria-hidden />} title="Todavía no tenés favoritos" text="Tocá el corazón de un producto para guardarlo y encontrarlo más rápido."><a href="#demo" className={buttonClasses({ size: "md" })}>Ver productos</a></EmptyState>) },
           ]} />
       ),
-      use: ["Carrito vacío, sin resultados, pago rechazado, sin órdenes y sin devoluciones."],
+      use: ["Carrito vacío, sin resultados, sin pedidos y sin favoritos."],
       avoid: ["Para errores: usá un mensaje de error."],
       a11y: ["Elegí el nivel del título (titleAs): h1 en páginas, h3 en paneles.", "La acción debe ser un link o botón con texto claro."],
     }),
@@ -263,20 +219,4 @@ export const patternPanels: Record<string, () => ReturnType<typeof buildPage>> =
       avoid: ["Para otros pasos del flujo: usá Button."],
       a11y: ["El botón usa loading con aria-busy y no admite doble click."],
     }),
-
-  "shipping-check": () =>
-    buildPage({
-      css: "patterns/buy-box.css", selector: /shipping-check/, history: null, tokenNote: none,
-      purpose: [
-        { title: "Verificar la zona", text: "El usuario ingresa su código postal y ve si hay envío." },
-        { title: "Resultado inmediato", text: "Mensaje de zona cubierta o no cubierta." },
-        { title: "En la ficha", text: "Se usa dentro del bloque de compra." },
-      ],
-      config: <Variants title="Flujo" ariaLabel="Shipping check" description="Probalo con 1425 (cubierto) o 5000 (no cubierto). La regla es una heurística simple de ejemplo."
-        items={[{ value: "live", label: "Interactivo", caption: "Usa Input y Button secondary.", node: box(380, <ShippingCheck />) }]} />,
-      use: ["En la ficha de producto, antes de agregar al carrito."],
-      avoid: ["Como validación definitiva de entrega: la regla real vive en el checkout."],
-      a11y: ["El input tiene aria-label y autoComplete=\"postal-code\".", <>El resultado usa <code>role=&quot;status&quot;</code>.</>],
-    }),
 }
-

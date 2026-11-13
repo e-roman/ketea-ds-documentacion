@@ -158,12 +158,6 @@ export const foundationPages: Record<string, FoundationSection[]> = {
   opacity: [
     { title: "Opacidad", intro: "Para estados deshabilitado, hover y el fondo atenuado de modales y drawers.", prefixes: ["opacity-"] },
   ],
-  opacity: [
-    { title: "Opacidad", intro: "Para estados deshabilitado, hover y el fondo atenuado de modales y drawers.", prefixes: ["opacity-"] },
-  ],
-  opacity: [
-    { title: "Opacidad", intro: "Para estados deshabilitado, hover y el fondo atenuado de modales y drawers.", prefixes: ["opacity-"] },
-  ],
   border: [
     { title: "Ancho", intro: "Del borde fino al de foco.", prefixes: ["border-width-"], sample: "border" },
     { title: "Color", intro: "Un color por función: separar, marcar un campo y enfocar.", prefixes: ["color-border-"], sample: "color" },

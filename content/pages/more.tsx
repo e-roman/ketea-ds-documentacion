@@ -1,7 +1,7 @@
 import { sizeLabel } from "@/lib/labels"
 import { Heart, Search, ShoppingCart, User, X } from "lucide-react"
 import { buildPage } from "@/content/compat/build-page"
-import { AccordionLive, ChipsLive, RatingLive, TabsLive } from "@/content/compat/demos"
+import { AccordionLive, TabsLive } from "@/content/compat/demos"
 import Variants from "@/content/compat/variants"
 import { Breadcrumb } from "@shop/components/ui/breadcrumb"
 import { Card } from "@shop/components/ui/card"
@@ -10,9 +10,7 @@ import { IconBadge } from "@shop/components/ui/icon-badge"
 import { iconButtonClasses, type IconButtonSize, type IconButtonVariant } from "@shop/components/ui/icon-button"
 import { linkClasses } from "@shop/components/ui/link"
 import { Price } from "@shop/components/ui/price"
-import { Progress } from "@shop/components/ui/progress"
 import { Skeleton } from "@shop/components/ui/skeleton"
-import { chipClasses } from "@shop/components/ui/chip"
 
 
 /* ───────────────────────── Link ───────────────────────── */
@@ -116,47 +114,6 @@ export const iconButtonPanels = () =>
   })
 
 /* ───────────────────────── Chip ───────────────────────── */
-export const chipPanels = () =>
-  buildPage({
-    css: "components/chip.css",
-    history: /\bchip/i,
-    purpose: [
-      { title: "Filtrar", text: "Opciones de filtro que se activan y desactivan para acotar una lista." },
-      { title: "Siempre pill", text: "Alto de 36 px, totalmente redondeado." },
-      { title: "Estado claro", text: "El estado seleccionado se comunica con color y con aria-pressed." },
-    ],
-    anatomy: {
-      node: <button type="button" aria-pressed="true" className={chipClasses(true)}>Robots</button>,
-      parts: [{ n: 1, selector: ".chip" }, { n: 2, selector: ".chip", only: ["texto", "tipografia"] }],
-      markers: [{ n: 1, side: "left" }, { n: 2, side: "bottom" }],
-      legend: [{ n: 1, label: "Contenedor" }, { n: 2, label: "Label" }],
-    },
-    config: (
-      <>
-        <Variants title="Estado" ariaLabel="Estado del chip" description={<>La función <code>chipClasses(selected)</code> arma las clases; usala con <code>aria-pressed</code>.</>}
-          items={[
-            { value: "default", label: "Default", caption: "Sin seleccionar.", node: <button type="button" aria-pressed="false" className={chipClasses(false)}>Dolphin</button> },
-            { value: "selected", label: "Seleccionado", caption: "aria-pressed=\"true\".", node: <button type="button" aria-pressed="true" className={chipClasses(true)}>Dolphin</button> },
-          ]} />
-        <Variants title="Grupo interactivo" ariaLabel="Grupo de chips" description="Probalo: elegí un filtro."
-          items={[{ value: "group", label: "Selección única", caption: "El estado lo maneja quien usa el componente.", node: <ChipsLive /> }]} />
-      </>
-    ),
-    use: ["Para filtrar o refinar una lista de productos.", "Para pocas opciones visibles a la vez."],
-    avoid: [<>Para navegar entre secciones: usá <b>Tabs</b>.</>, "Para acciones: usá Button."],
-    dodont: [
-      { ok: true, title: "Labels cortos", text: "Una o dos palabras.", preview: <div className="demo-row"><button type="button" className={chipClasses(true)} aria-pressed="true">Robots</button><button type="button" className={chipClasses(false)} aria-pressed="false">Dolphin</button></div> },
-      { ok: false, title: "Evitá frases largas", text: "El chip pierde su función.", preview: <button type="button" className={chipClasses(false)} aria-pressed="false">Productos aptos para celíacos</button> },
-    ],
-    a11y: [<>Usar <code>aria-pressed</code> para comunicar el estado seleccionado.</>, "Es un <button>: el texto es el nombre accesible.", "El alto es de 36 px: en mobile, dejá separación suficiente entre chips."],
-    keys: [[<><kbd>Enter</kbd> / <kbd>Espacio</kbd></>, "Alterna el estado."], [<><kbd>Tab</kbd></>, "Mueve el foco."]],
-    contrast: [
-      { label: "Texto default", fg: "chip-fg", bg: "chip-bg" },
-      { label: "Texto seleccionado", fg: "chip-fg-selected", bg: "chip-bg-selected" },
-    ],
-  })
-
-/* ───────────────────────── Tabs ───────────────────────── */
 export const tabsPanels = () =>
   buildPage({
     css: "components/tabs.css",
@@ -185,7 +142,7 @@ export const tabsPanels = () =>
   })
 
 /* ───────────────────────── Breadcrumb ───────────────────────── */
-const CRUMBS = [{ label: "Inicio", href: "#demo" }, { label: "Productos", href: "#demo" }, { label: "Ravioles", href: "#demo" }, { label: "Ravioles de ricota" }]
+const CRUMBS = [{ label: "Inicio", href: "#demo" }, { label: "Productos", href: "#demo" }, { label: "Robots", href: "#demo" }, { label: "Dolphin Liberty 400" }]
 export const breadcrumbPanels = () =>
   buildPage({
     css: "patterns/product-specs.css",
@@ -304,24 +261,23 @@ export const pricePanels = () =>
     history: /price|precio/i,
     purpose: [
       { title: "Mostrar el precio", text: "El precio del producto, con precio anterior y descuento opcionales." },
-      { title: "Precio por unidad", text: "Acompaña el precio con las cuotas sin interés." },
+      { title: "Anunciar el descuento", text: "Badge con el porcentaje de descuento junto al precio." },
       { title: "Tres tamaños", text: "sm, md y lg según el lugar: card, carrito o ficha." },
     ],
     anatomy: {
-      node: <div className="demo-w-180"><Price current={4200} previous={4900} discountPercent={15} unit={1050} size="lg" /></div>,
-      parts: [{ n: 1, selector: ".price__previous", only: ["texto", "tipografia"] }, { n: 2, selector: ".price__current", only: ["texto", "tipografia"] }, { n: 3, selector: ".badge" }, { n: 4, selector: ".price__unit", only: ["texto", "tipografia"] }],
-      markers: [{ n: 1, side: "top", pct: 20 }, { n: 2, side: "left", pct: 48 }, { n: 3, side: "right", pct: 48 }, { n: 4, side: "bottom", pct: 30 }],
-      legend: [{ n: 1, label: "Precio anterior", note: "tachado, opcional" }, { n: 2, label: "Precio actual" }, { n: 3, label: "Badge de descuento", note: "opcional" }, { n: 4, label: "Precio por unidad", note: "opcional" }],
+      node: <div className="demo-w-180"><Price current={3385460} previous={4513950} discountPercent={25} size="lg" /></div>,
+      parts: [{ n: 1, selector: ".price__previous", only: ["texto", "tipografia"] }, { n: 2, selector: ".price__current", only: ["texto", "tipografia"] }, { n: 3, selector: ".badge" }],
+      markers: [{ n: 1, side: "top", pct: 20 }, { n: 2, side: "left", pct: 48 }, { n: 3, side: "right", pct: 48 }],
+      legend: [{ n: 1, label: "Precio anterior", note: "tachado, opcional" }, { n: 2, label: "Precio actual" }, { n: 3, label: "Badge de descuento", note: "opcional" }],
     },
     config: (
       <>
-        <Variants title="Tamaño" ariaLabel="Tamaño del precio" description={<>La prop <code>size</code>. Los valores de ejemplo son ficticios.</>}
-          items={(["sm", "md", "lg"] as const).map((s) => ({ value: s, label: sizeLabel(s), caption: `size="${s}".`, node: <Price current={4200} size={s} /> }))} />
+        <Variants title="Tamaño" ariaLabel="Tamaño del precio" description={<>La prop <code>size</code>.</>}
+          items={(["sm", "md", "lg"] as const).map((s) => ({ value: s, label: sizeLabel(s), caption: `size="${s}".`, node: <Price current={3385460} size={s} /> }))} />
         <Variants title="Con descuento" ariaLabel="Descuento del precio" description="El precio anterior se anuncia a lectores de pantalla con texto oculto."
           items={[
-            { value: "simple", label: "Simple", caption: "Solo precio actual.", node: <Price current={4200} /> },
-            { value: "discount", label: "Con descuento", caption: "previous + discountPercent.", node: <Price current={4200} previous={4900} discountPercent={15} /> },
-            { value: "unit", label: "Con unidad", caption: "unit.", node: <Price current={4200} unit={1050} /> },
+            { value: "simple", label: "Simple", caption: "Solo precio actual.", node: <Price current={3385460} /> },
+            { value: "discount", label: "Con descuento", caption: "previous + discountPercent.", node: <Price current={3385460} previous={4513950} discountPercent={25} /> },
           ]} />
       </>
     ),
@@ -331,68 +287,6 @@ export const pricePanels = () =>
     contrast: [
       { label: "Precio actual", fg: "color-commerce-price-current", bg: "color-surface-default" },
       { label: "Precio anterior", fg: "color-commerce-price-previous", bg: "color-surface-default" },
-    ],
-  })
-
-/* ───────────────────────── Progress ───────────────────────── */
-export const progressPanels = () =>
-  buildPage({
-    css: "components/progress.css",
-    history: /progress\.\*|progress bar|barra de progreso/i,
-    purpose: [
-      { title: "Mostrar avance", text: "Indica cuánto falta para completar algo, como los pasos de una compra." },
-      { title: "Estados", text: "Neutral, success y error cambian pista y relleno." },
-      { title: "Accesible", text: "role=\"progressbar\" con valor actual." },
-    ],
-    anatomy: {
-      node: <div className="demo-w-260"><Progress value={60} label="Avance de ejemplo" /></div>,
-      parts: [{ n: 1, selector: ".progress", only: ["fondo", "radio", "alto"] }, { n: 2, selector: ".progress__fill", only: ["fondo", "radio"] }],
-      markers: [{ n: 1, side: "top", pct: 50 }, { n: 2, side: "bottom", pct: 30 }],
-      legend: [{ n: 1, label: "Pista" }, { n: 2, label: "Relleno" }],
-    },
-    config: (
-      <>
-        <Variants title="Estado" ariaLabel="Estado de la barra" description={<>La prop <code>state</code>. El relleno del estado neutral usa el color sólido de error, tal como está en el CSS de la tienda.</>}
-          items={(["neutral", "success", "error"] as const).map((s) => ({ value: s, label: s, caption: `state="${s}".`, node: <div className="demo-w-280"><Progress value={60} state={s} label="Avance de ejemplo" /></div> }))} />
-        <Variants title="Tamaño" ariaLabel="Tamaño de la barra" description={<>La prop <code>size</code>: <code>md</code> (10 px) o <code>sm</code> (6 px).</>}
-          items={(["md", "sm"] as const).map((s) => ({ value: s, label: sizeLabel(s), caption: `size="${s}".`, node: <div className="demo-w-280"><Progress value={60} size={s} state="success" label="Avance de ejemplo" /></div> }))} />
-        <Variants title="Valor" ariaLabel="Valor de la barra" description="El valor va de 0 a 100 y se limita automáticamente."
-          items={[0, 25, 60, 100].map((v) => ({ value: String(v), label: `${v}%`, caption: `value=${v}.`, node: <div className="demo-w-280"><Progress value={v} state="success" label="Avance de ejemplo" /></div> }))} />
-      </>
-    ),
-    use: ["Para progreso con un objetivo claro (por ejemplo, los pasos de una compra).", "Con un texto cercano que diga el valor."],
-    avoid: ["Para cargas de duración desconocida: usá un spinner o skeleton.", "Sin texto que explique qué mide."],
-    a11y: [<><code>role=&quot;progressbar&quot;</code> con <code>aria-valuemin</code>, <code>aria-valuemax</code> y <code>aria-valuenow</code>.</>, <>Siempre con <code>label</code> (<code>aria-label</code>) que diga qué mide.</>, "Acompañá la barra con el valor en texto: no dependas del color."],
-    contrast: [
-      { label: "Relleno neutral", fg: "color-feedback-error-solid", bg: "color-surface-muted", min: 3 },
-      { label: "Relleno success", fg: "color-feedback-success-solid", bg: "color-feedback-success-bg", min: 3 },
-    ],
-  })
-
-/* ───────────────────────── Rating scale ───────────────────────── */
-export const ratingScalePanels = () =>
-  buildPage({
-    css: "components/rating-scale.css",
-    history: /rating/i,
-    purpose: [
-      { title: "Pedir un puntaje", text: "Escala numérica para encuestas, por ejemplo NPS del 1 al 10." },
-      { title: "Una opción", text: "Cada número es un botón con aria-pressed." },
-      { title: "Táctil", text: "Alto de 44 px." },
-    ],
-    config: (
-      <Variants title="Escala" ariaLabel="Rango de la escala" description={<>Las props <code>min</code> y <code>max</code> definen el rango (por defecto 1 a 10). Probalo.</>}
-        items={[
-          { value: "10", label: "1 a 10", caption: "NPS.", node: <div className="demo-w-460"><RatingLive max={10} /></div> },
-          { value: "5", label: "1 a 5", caption: "max=5.", node: <div className="demo-w-300"><RatingLive max={5} /></div> },
-        ]} />
-    ),
-    use: ["Para encuestas de satisfacción o recomendación.", "Con textos en los extremos («Nada probable» / «Muy probable»)."],
-    avoid: ["Para elegir entre opciones con significado propio: usá radios.", "Sin explicar qué significa cada extremo."],
-    a11y: ["El contenedor es role=\"group\": agregale un nombre con el texto de la pregunta.", "Cada número es un <button> con aria-pressed.", "El estado seleccionado cambia de fondo y color de texto, no solo de borde."],
-    keys: [[<><kbd>Tab</kbd></>, "Recorre las opciones."], [<><kbd>Enter</kbd> / <kbd>Espacio</kbd></>, "Selecciona."]],
-    contrast: [
-      { label: "Opción", fg: "color-text-primary", bg: "color-surface-default" },
-      { label: "Opción seleccionada", fg: "color-text-inverse", bg: "color-surface-inverse" },
     ],
   })
 

@@ -6,7 +6,7 @@ import { LIVE } from "@/lib/live-stories"
 import { buttonPiece } from "@/content/button"
 import { extractPiece } from "@/content/compat/extract"
 import { history as ownHistory } from "@/content/history"
-import { accordionPanels, breadcrumbPanels, cardPanels, chipPanels, formPartsPanels, iconBadgePanels, iconButtonPanels, linkPanels, pricePanels, progressPanels, ratingScalePanels, skeletonPanels, tabsPanels } from "@/content/pages/more"
+import { accordionPanels, breadcrumbPanels, cardPanels, formPartsPanels, iconBadgePanels, iconButtonPanels, linkPanels, pricePanels, skeletonPanels, tabsPanels } from "@/content/pages/more"
 import { inputPanels } from "@/content/pages/input"
 import { patternPanels } from "@/content/pages/patterns"
 import { stepperPanels } from "@/content/pages/stepper"
@@ -55,9 +55,9 @@ const fromPanels = (group: Piece["group"], item: { slug: string; title: string; 
 }
 
 const componentPanels: Record<string, () => Parameters<typeof extractPiece>[1]> = {
-  accordion: accordionPanels, breadcrumb: breadcrumbPanels, card: cardPanels, chip: chipPanels, "form-parts": formPartsPanels,
-  "icon-badge": iconBadgePanels, "icon-button": iconButtonPanels, link: linkPanels, price: pricePanels, progress: progressPanels,
-  "rating-scale": ratingScalePanels, skeleton: skeletonPanels, tabs: tabsPanels, input: inputPanels, stepper: stepperPanels,
+  accordion: accordionPanels, breadcrumb: breadcrumbPanels, card: cardPanels, "form-parts": formPartsPanels,
+  "icon-badge": iconBadgePanels, "icon-button": iconButtonPanels, link: linkPanels, price: pricePanels,
+  skeleton: skeletonPanels, tabs: tabsPanels, input: inputPanels, stepper: stepperPanels,
 }
 
 const ownPieces: Piece[] = [

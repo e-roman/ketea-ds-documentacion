@@ -3,15 +3,13 @@ import { useState } from "react"
 import { Button } from "@shop/components/ui/button"
 import { ChevronDown } from "lucide-react"
 import { Stepper, type StepperProps } from "@shop/components/ui/stepper"
-import { chipClasses } from "@shop/components/ui/chip"
-import { RatingScale } from "@shop/components/ui/rating-scale"
 import { Tabs } from "@shop/components/ui/tabs"
 
 const noop = () => {}
 
 /** Stepper estático (para mostrar estados fijos). */
 export function StepperStatic(props: Partial<StepperProps> & { value: number }) {
-  return <Stepper label="Ravioles de ricota" onDecrement={noop} onIncrement={noop} {...props} />
+  return <Stepper label="Robot limpia piscina Dolphin Liberty 400" onDecrement={noop} onIncrement={noop} {...props} />
 }
 
 /** Stepper interactivo con estado propio. */
@@ -19,7 +17,7 @@ export function StepperLive({ size = "md", start = 1, max = 12 }: { size?: Stepp
   const [v, setV] = useState(start)
   return (
     <div className={size === "sm" ? "demo-w-120" : "demo-w-160"}>
-      <Stepper label="Ravioles de ricota" size={size} value={v} max={max} onDecrement={() => setV((x) => Math.max(0, x - 1))} onIncrement={() => setV((x) => x + 1)} />
+      <Stepper label="Robot limpia piscina Dolphin Liberty 400" size={size} value={v} max={max} onDecrement={() => setV((x) => Math.max(0, x - 1))} onIncrement={() => setV((x) => x + 1)} />
     </div>
   )
 }
@@ -32,7 +30,7 @@ export function AddToCartSwap() {
       {n === 0 ? (
         <Button variant="add-to-cart" onClick={() => setN(1)}>Agregar</Button>
       ) : (
-        <Stepper label="Ravioles de ricota" value={n} size="md" onDecrement={() => setN(n - 1)} onIncrement={() => setN(n + 1)} />
+        <Stepper label="Robot limpia piscina Dolphin Liberty 400" value={n} size="md" onDecrement={() => setN(n - 1)} onIncrement={() => setN(n + 1)} />
       )}
     </div>
   )
@@ -54,22 +52,6 @@ export function TabsLive() {
       </div>
     </div>
   )
-}
-
-export function ChipsLive({ options = ["Todos", "Veganos", "Sin TACC", "Premium"] }: { options?: string[] }) {
-  const [sel, setSel] = useState<string>(options[0])
-  return (
-    <div className="demo-row">
-      {options.map((o) => (
-        <button key={o} type="button" aria-pressed={sel === o} className={chipClasses(sel === o)} onClick={() => setSel(o)}>{o}</button>
-      ))}
-    </div>
-  )
-}
-
-export function RatingLive({ max = 10 }: { max?: number }) {
-  const [v, setV] = useState<number | null>(null)
-  return <RatingScale max={max} value={v} onChange={setV} />
 }
 
 export function AccordionLive({ compact = false }: { compact?: boolean }) {
