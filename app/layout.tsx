@@ -1,16 +1,13 @@
 import type { CSSProperties } from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import "../.generated/tokens.css" // tokens de Ketea + variables de la tienda (scripts/build-tokens.mjs), a nivel documento: llegan a los shadow roots
 import "./globals.css"
 import { SiteHeader } from "ds-docs-theme/docs/site-header"
 import { Toaster } from "ds-docs-theme/ui/sonner"
 import { TooltipProvider } from "ds-docs-theme/ui/tooltip"
-import { searchIndex } from "@/lib/search-index"
+import { brand, allTokens } from "@/lib/project"
 import { topNav } from "@/lib/nav"
-import { allTokens } from "@/lib/tokens"
-
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] })
+import { searchIndex } from "@/lib/search-index"
 
 export const metadata: Metadata = {
   title: "Ketea Design System",
@@ -19,23 +16,27 @@ export const metadata: Metadata = {
 
 /** Colores de la documentación que salen del paquete de tokens, no se escriben a mano. */
 const tokenValue = (name: string, fallback: string) => allTokens().find((t) => t.name === name)?.resolved ?? fallback
-const brand = tokenValue("color-brand-default", "#385dbe")
-const success = tokenValue("color-semantic-feedback-success-text", "#15803d")
-const danger = tokenValue("color-semantic-feedback-error-border", "#ef4444")
-
-/** Marca del sitio: el theme dibuja el header, el proyecto pone su logo y nombre. */
-const siteBrand = { name: "Ketea", tagline: "Design System", logo: { src: "/logo-ketea.svg", width: 106, height: 28 } }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const vars = {
+    "--brand": tokenValue("color-text-brand", "#385dbe"),
+    "--success": tokenValue("color-feedback-success-text", "#15803d"),
+    "--danger": tokenValue("color-feedback-error-border", "#ef4444"),
+    "--doc-stage": "#ffffff",
+    "--doc-font-sans": '"Mulish", system-ui, sans-serif',
+    "--doc-font-mono": "ui-monospace, SFMono-Regular, Menlo, monospace",
+  } as CSSProperties
   return (
-    <html
-      lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      style={{ "--brand": brand, "--success": success, "--danger": danger, "--doc-stage": "#ffffff", "--doc-font-sans": "var(--font-geist-sans)", "--doc-font-mono": "var(--font-geist-mono)" } as CSSProperties}
-    >
+    <html lang="es" className="h-full antialiased" style={vars}>
+      <head>
+        {/* Fuentes a nivel documento: las @font-face sí llegan a los shadow roots de las vistas */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+      </head>
       <body className="min-h-full">
         <TooltipProvider>
-          <SiteHeader entries={searchIndex()} brand={siteBrand} topNav={topNav} />
+          <SiteHeader entries={searchIndex()} brand={brand} topNav={topNav} />
           {children}
           <Toaster />
         </TooltipProvider>

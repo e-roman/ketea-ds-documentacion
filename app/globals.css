@@ -1,1 +1,4 @@
 @import "ds-docs-theme/theme.css";
+
+/* Vista del header mobile: se carga en un iframe de 390 px y no lleva el header de la documentación */
+body:has([data-embed]) header { display: none; }

@@ -4,17 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3300",
-    "prebuild": "node scripts/update-tokens.mjs",
     "build": "next build",
     "start": "next start -p 3300",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:shop-css": "node scripts/build-shop-css.mjs",
+    "sync:assets": "node scripts/sync-shop-assets.mjs",
+    "predev": "node scripts/fetch-shop.mjs && node scripts/sync-shop-assets.mjs && node scripts/build-shop-css.mjs && node scripts/build-tokens.mjs",
+    "prebuild": "node scripts/update-tokens.mjs && node scripts/fetch-shop.mjs && node scripts/sync-shop-assets.mjs && node scripts/build-shop-css.mjs && node scripts/build-tokens.mjs",
+    "prestart": "node scripts/sync-shop-assets.mjs"
   },
   "dependencies": {
     "@ketea/tokens": "github:e-roman/ketea-design-tokens#v3.0.0",
+    "clsx": "^2.1.1",
     "ds-docs-theme": "github:e-roman/ds-docs-theme#v1.4.0",
+    "lucide-react": "0.383.0",
     "next": "16.4.5",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
@@ -24,6 +32,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
+    "tailwindcss3": "npm:tailwindcss@^3.4.19",
     "typescript": "^5"
   }
 }

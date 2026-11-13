@@ -42,3 +42,8 @@ next-env.d.ts
 
 # paquete de vistas de la tienda (prueba local)
 public/ketea-preview
+public/shop.css
+shop/
+.generated/
+public/assets/
+public/cards/
