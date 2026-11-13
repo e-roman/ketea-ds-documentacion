@@ -17,7 +17,6 @@ const nextConfig: NextConfig = {
       "lucide-react": "./node_modules/lucide-react",
       clsx: "./node_modules/clsx",
       sonner: "./node_modules/sonner",
-      "next/link": "./lib/link-sin-precarga.tsx",
     },
     rules: { "*.css": { loaders: ["@tailwindcss/turbopack"], as: "*.css" } },
   },

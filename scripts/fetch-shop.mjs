@@ -12,8 +12,20 @@ const SKIP = new Set(["node_modules", ".git", ".next", "storybook-static"])
 
 fs.rmSync(dest, { recursive: true, force: true })
 
+// Los links de la tienda apuntan a rutas que no existen acá: se cambia next/link por uno sin precarga (evita 404 en consola).
+function sinPrecarga(dir) {
+  for (const n of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, n.name)
+    if (n.isDirectory()) { if (!["public", "node_modules"].includes(n.name)) sinPrecarga(p); continue }
+    if (!/.tsx$/.test(n.name)) continue
+    const t = fs.readFileSync(p, "utf8")
+    if (t.includes('from "next/link"')) fs.writeFileSync(p, t.replaceAll('from "next/link"', 'from "@/lib/link-sin-precarga"'))
+  }
+}
+
 if (fs.existsSync(path.join(src, "package.json"))) {
   fs.cpSync(src, dest, { recursive: true, filter: (p) => !SKIP.has(path.basename(p)) })
+  sinPrecarga(dest)
   console.log(`fetch-shop: ${src} copiada en ./shop`)
   process.exit(0)
 }
@@ -24,6 +36,7 @@ const branch = process.env.SHOP_BRANCH || "main"
 try {
   execFileSync("git", ["clone", "--depth", "1", "--branch", branch, url, dest], { stdio: ["ignore", "inherit", "inherit"] })
   fs.rmSync(path.join(dest, ".git"), { recursive: true, force: true })
+  sinPrecarga(dest)
   console.log(`fetch-shop: ketea-tienda-spike (${branch}) clonada en ./shop`)
 } catch {
   console.error("fetch-shop: no se pudo clonar ketea-tienda-spike. Si el repo pasó a privado, definí GH_TOKEN en las variables de entorno.")
