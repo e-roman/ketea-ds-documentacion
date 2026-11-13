@@ -35,5 +35,4 @@ export const LIVE: Record<string, boolean[]> = {
   "form-input": live(4),
   logo: live(3),
   text: live(2),
-  layout: live(2),
 }

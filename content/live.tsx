@@ -19,7 +19,7 @@ import Footer from "@shop/components/footer"
 import Hero from "@shop/components/hero"
 import Nav from "@shop/components/nav"
 import WhatsappFloat from "@shop/components/whatsapp-float"
-import { Row, Stack } from "@shop/components/ui/layout"
+import { Stack } from "@shop/components/ui/layout"
 import { Logo } from "@shop/components/ui/logo"
 import { Heading, Text } from "@shop/components/ui/text"
 import { Checkbox } from "@shop/components/ui/checkbox"
@@ -365,18 +365,6 @@ const STORIES: Record<string, ReactNode[]> = {
           <Heading key={size} size={size}>{size}</Heading>
         ))}
       </div>
-    </Env>,
-  ],
-  layout: [
-    <Env key="0" width={600}>
-      <Row gap={4} align="center" justify="between">
-        <div className="demo-box-sample">Uno</div><div className="demo-box-sample">Dos</div><div className="demo-box-sample">Tres</div>
-      </Row>
-    </Env>,
-    <Env key="1" width={600}>
-      <Stack gap={3}>
-        <div className="demo-box-sample">Uno</div><div className="demo-box-sample">Dos</div><div className="demo-box-sample">Tres</div>
-      </Stack>
     </Env>,
   ],
 }

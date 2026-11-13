@@ -441,21 +441,6 @@ export const sbPatterns: SbPattern[] = [
     use: ["Para todo el texto: así el tamaño y el color salen de los tokens."],
     avoid: ["Armar tamaños con utilidades de Tailwind: la tienda lo prohíbe."],
   },
-  {
-    slug: "layout", group: "components", sb: "UI/Layout", title: "Layout", nav: "Row y Stack con gap por token.",
-    desc: "Row (en fila) y Stack (en columna) acomodan hijos con un gap que sale de la escala de spacing.",
-    shots: [
-      { label: "Row", story: ["UI/Layout", "Row"], w: 600 },
-      { label: "Stack", story: ["UI/Layout", "Stack"], w: 600 },
-    ],
-    props: [
-      ["gap", "number", "Escalón de spacing entre hijos."],
-      ["align", '"start" | "center" | "end"', "Alineación en el eje cruzado."],
-      ["justify", '"start" | "center" | "between" | "end"', "Distribución en el eje principal (Row)."],
-    ],
-    use: ["Para acomodar contenido sin escribir flex a mano."],
-    avoid: ["Para grillas de varias columnas: usá la grilla de la página."],
-  },
 ]
 
 /** Captura de respaldo si una vista no está en vivo (ver lib/live-stories.ts). */
